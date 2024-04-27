@@ -14,14 +14,10 @@ class RegisterScreenViewModel extends ChangeNotifier {
   var nameController = TextEditingController(text: 'ahmed');
   var phoneNumber = TextEditingController(text: '01228384694');
   var address = TextEditingController(text: 'alexandria');
-
-  // todo: da le el patient
-  var chronicDiseases = TextEditingController();
-  var height = TextEditingController();
-  var weight = TextEditingController();
-  var age = TextEditingController();
-  var gender = TextEditingController();
-  var nationalId = TextEditingController();
+  // todo: da le el hospital
+  var doctorId = TextEditingController(text: '99');
+  var doctorName = TextEditingController(text: 'Mohammed');
+  var gender = TextEditingController(text: 'Male');
 
   CommonMethods cMethods = CommonMethods();
   var formKey = GlobalKey<FormState>();
@@ -55,9 +51,9 @@ class RegisterScreenViewModel extends ChangeNotifier {
           id: credential.user?.uid ?? '',
           hospitalName: nameController.text,
           email: emailController.text,
-          doctorId: emailController.text,
-          doctorName: emailController.text,
-          gender: emailController.text,
+          doctorId: doctorId.text,
+          doctorName: doctorName.text,
+          gender: gender.text,
         );
         // var authProvider = Provider.of<AuthProvider>(context,listen: false);
         // authProvider.updateUser(myUser);

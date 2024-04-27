@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hospital/authentication/register/register_navigator.dart';
 import 'package:hospital/authentication/register/register_screen_view_model.dart';
 import 'package:hospital/theme/theme.dart';
+import 'package:lottie/lottie.dart';
 
 import '../../dialog_utils.dart';
 import '../component/custom_text_form_field.dart';
@@ -44,11 +45,9 @@ class _RegisterScreenState extends State<RegisterScreen>
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(vertical: 30),
-              child: CircleAvatar(
-                backgroundImage: AssetImage('assets/images/ambulance_icon.png'),
-                radius: 60,
-                backgroundColor: MyTheme.redColor,
-              ),
+              child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  child: Lottie.asset('assets/images/hospital_lottie.json')),
             ),
             // Image.asset('assets/images/ambulance_icon.png', alignment: Alignment.topCenter),
             Form(
@@ -61,10 +60,10 @@ class _RegisterScreenState extends State<RegisterScreen>
                           height: MediaQuery.of(context).size.height * 0.01),
                       // user name
                       CustomTextFormField(
-                          prefixIcon: Icon(Icons.person_pin_sharp,
+                          prefixIcon: Icon(Icons.local_hospital,
                               color: MyTheme.redColor),
                           //Icons.drive_file_rename_outline
-                          label: 'User Name',
+                          label: 'Hosbital name',
                           controller: viewModelRegister.nameController,
                           validator: (text) {
                             if (text == null || text.trim().isEmpty) {
@@ -163,27 +162,39 @@ class _RegisterScreenState extends State<RegisterScreen>
                       // chronic diseases
                       CustomTextFormField(
                         prefixIcon:
-                            Icon(Icons.coronavirus, color: MyTheme.redColor),
+                            Icon(Icons.numbers, color: MyTheme.redColor),
                         //lock_outline_sharp
-                        label: 'Chronic Disease',
-                        controller: viewModelRegister.chronicDiseases,
+                        label: 'Doctor ID',
+                        controller: viewModelRegister.doctorId,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return 'Please enter a Chronic Diseases';
+                            return 'Please enter a your Doctor ID';
                           }
                           return null;
                         },
                       ),
                       //
                       CustomTextFormField(
-                        prefixIcon:
-                            Icon(Icons.coronavirus, color: MyTheme.redColor),
+                        prefixIcon: Icon(Icons.person_pin_sharp,
+                            color: MyTheme.redColor),
                         //lock_outline_sharp
-                        label: 'Chronic Disease',
-                        controller: viewModelRegister.chronicDiseases,
+                        label: 'Name',
+                        controller: viewModelRegister.doctorName,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return 'Please enter a Chronic Diseases';
+                            return 'Please enter a your Name doctor';
+                          }
+                          return null;
+                        },
+                      ),
+                      CustomTextFormField(
+                        prefixIcon: Icon(Icons.male, color: MyTheme.redColor),
+                        //lock_outline_sharp
+                        label: 'Gender',
+                        controller: viewModelRegister.gender,
+                        validator: (text) {
+                          if (text == null || text.trim().isEmpty) {
+                            return 'Please enter a your Name Gender';
                           }
                           return null;
                         },

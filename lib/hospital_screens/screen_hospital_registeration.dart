@@ -58,7 +58,7 @@ class ScreenHospitalRegisteration extends StatelessWidget {
                     color: MyTheme.redColor),
                 validator: (text) {
                   if (text == null || text.trim().isEmpty) {
-                    return 'Please enter a doctor name';
+                    return 'Please enter a your name doctor';
                   }
                   return null;
                 },
