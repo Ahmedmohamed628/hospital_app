@@ -10,10 +10,11 @@ class ChatScreenHospital extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: ResponsiveLayout(
-          mobileScreenLayout: MobileLayoutScreen(),
-          webScreenLayout: WebLayoutScreen()),
-    );
+        body: Container(
+      child: Center(
+        child: Text("working"),
+      ),
+    ));
   }
 }
 

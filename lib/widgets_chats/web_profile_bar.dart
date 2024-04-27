@@ -1,5 +1,5 @@
-import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/theme/theme.dart';
 
 class WebProfileBar extends StatelessWidget {
   const WebProfileBar({Key? key}) : super(key: key);

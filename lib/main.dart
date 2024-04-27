@@ -1,29 +1,26 @@
-import 'package:ambulance/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
-import 'package:ambulance/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
-import 'package:ambulance/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
-import 'package:ambulance/hospital_screens/home_screen_hospital.dart';
-import 'package:ambulance/hospital_screens/screen_hospital_registeration.dart';
-import 'package:ambulance/observer_screens/home_screen_observer.dart';
-import 'package:ambulance/observer_screens/screen_observer_registeration.dart';
-import 'package:ambulance/patient_screens/Screens/Chat/Chat.dart';
-import 'package:ambulance/patient_screens/Screens/Hisorty/History.dart';
-import 'package:ambulance/patient_screens/Screens/Medications/Medications.dart';
-import 'package:ambulance/patient_screens/Screens/Root/Root.dart';
-import 'package:ambulance/patient_screens/Screens/Settings/Settings.dart';
-import 'package:ambulance/patient_screens/homeScreen_patient.dart';
-import 'package:ambulance/patient_screens/screen_patient_registeration.dart';
-import 'package:ambulance/screen_selection/screen_selection.dart';
-import 'package:ambulance/splash_screen/splash_screen.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-
+import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
+import 'package:hospital/hospital_screens/home_screen_hospital.dart';
+import 'package:hospital/hospital_screens/screen_hospital_registeration.dart';
+import 'package:hospital/splash_screen/splash_screen.dart';
 import 'authentication/login/login_screen.dart';
 import 'authentication/register/register_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
+  await Firebase.initializeApp(
+    options: FirebaseOptions(
+      apiKey: 'AIzaSyDGoIsHdQjW9hidXSdbW3xS4YqKVGfYJGI',
+      appId: '1:237732499396:android:fc5cf8ca28138255cfde91',
+      messagingSenderId: 'sendid',
+      projectId: 'emergency-app-da505',
+      storageBucket: 'emergency-app-da505.appspot.com',
+    ),
+  );
   FirebaseFirestore.instance.settings =
       Settings(cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);
   runApp(MyApp());
@@ -40,24 +37,12 @@ class MyApp extends StatelessWidget {
         SplashScreen.routeName: (context) => SplashScreen(),
         LoginScreen.routeName: (context) => LoginScreen(),
         RegisterScreen.routeName: (context) => RegisterScreen(),
-        RootScreen.routeName: (context) => RootScreen(),
-        SettingsScreen.routeName: (context) => SettingsScreen(),
-        HistoryScreenPatient.routeName: (context) => HistoryScreenPatient(),
-        ChatScreenPatient.routeName: (context) => ChatScreenPatient(),
-        MedicationScreen.routeName: (context) => MedicationScreen(),
-        HomeScreenPatient.routeName: (context) => HomeScreenPatient(),
-        ScreenPatientRegisteration.routeName: (context) =>
-            ScreenPatientRegisteration(),
-        ScreenSelection.routeName: (context) => ScreenSelection(),
         HomeScreenHospital.routeName: (context) => HomeScreenHospital(),
         ChatScreenHospital.routeName: (context) => ChatScreenHospital(),
         HistoryScreenHospital.routeName: (context) => HistoryScreenHospital(),
         SettingsScreenHospital.routeName: (context) => SettingsScreenHospital(),
         ScreenHospitalRegisteration.routeName: (context) =>
             ScreenHospitalRegisteration(),
-        HomeScreenObserver.routeName: (context) => HomeScreenObserver(),
-        ScreenObserverRegisteration.routeName: (context) =>
-            ScreenObserverRegisteration(),
       },
     );
   }

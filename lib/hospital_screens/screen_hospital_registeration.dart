@@ -1,7 +1,6 @@
-import 'package:ambulance/hospital_screens/home_screen_hospital.dart';
-import 'package:ambulance/screen_selection/screen_selection.dart';
-import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/hospital_screens/home_screen_hospital.dart';
+import 'package:hospital/theme/theme.dart';
 import 'package:lottie/lottie.dart';
 
 import '../authentication/component/custom_text_form_field.dart';
@@ -23,7 +22,7 @@ class ScreenHospitalRegisteration extends StatelessWidget {
           centerTitle: true,
           leading: IconButton(
               onPressed: () {
-                Navigator.of(context).pop(ScreenSelection.routeName);
+                Navigator.of(context).pop(HomeScreenHospital.routeName);
               },
               icon: Icon(Icons.arrow_back))),
       body: SingleChildScrollView(

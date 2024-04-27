@@ -1,7 +1,6 @@
-import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
-
-import '../../../screen_selection/screen_selection.dart';
+import 'package:hospital/hospital_screens/home_screen_hospital.dart';
+import 'package:hospital/theme/theme.dart';
 
 class RootScreenHospital extends StatefulWidget {
   static const String routeName = 'Root';
@@ -20,7 +19,7 @@ class _RootScreenHospitalState extends State<RootScreenHospital> {
           backgroundColor: MyTheme.redColor,
           leading: IconButton(
               onPressed: () {
-                Navigator.of(context).pop(ScreenSelection.routeName);
+                Navigator.of(context).pop(HomeScreenHospital.routeName);
               },
               icon: Icon(Icons.arrow_back, color: MyTheme.whiteColor))),
       backgroundColor: MyTheme.whiteColor,

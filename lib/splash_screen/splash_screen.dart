@@ -1,8 +1,8 @@
 import 'dart:async';
 
-import 'package:ambulance/authentication/login/login_screen.dart';
-import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/authentication/login/login_screen.dart';
+import 'package:hospital/theme/theme.dart';
 import 'package:lottie/lottie.dart';
 
 class SplashScreen extends StatelessWidget {

@@ -1,5 +1,5 @@
-import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/theme/theme.dart';
 
 class WebSearchBar extends StatelessWidget {
   const WebSearchBar({Key? key}) : super(key: key);

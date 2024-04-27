@@ -1,7 +1,7 @@
-import 'package:ambulance/authentication/register/register_navigator.dart';
-import 'package:ambulance/authentication/register/register_screen_view_model.dart';
-import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/authentication/register/register_navigator.dart';
+import 'package:hospital/authentication/register/register_screen_view_model.dart';
+import 'package:hospital/theme/theme.dart';
 
 import '../../dialog_utils.dart';
 import '../component/custom_text_form_field.dart';

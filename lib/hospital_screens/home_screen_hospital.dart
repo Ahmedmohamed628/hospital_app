@@ -1,10 +1,10 @@
-import 'package:ambulance/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
-import 'package:ambulance/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
-import 'package:ambulance/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
-import 'package:ambulance/hospital_screens/Screens_of_hospital/ambulance/ambulance.dart';
-import 'package:ambulance/hospital_screens/Screens_of_hospital/root/root.dart';
-import 'package:ambulance/theme/theme.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/ambulance/ambulance.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/root/root.dart';
+import 'package:hospital/theme/theme.dart';
 
 import 'Screens_of_hospital/deaf/deaf.dart';
 
@@ -68,16 +68,3 @@ class _HomeScreenHospitalState extends State<HomeScreenHospital> {
     SettingsScreenHospital()
   ];
 }
-
-// import 'package:flutter/material.dart';
-//
-// class HomeScreenHospital extends StatelessWidget {
-// static const String routeName ='Home-screen-hospital';
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//
-//
-//     );
-//   }
-// }

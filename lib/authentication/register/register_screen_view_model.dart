@@ -1,12 +1,12 @@
-import 'package:ambulance/authentication/register/register_navigator.dart';
-import 'package:ambulance/dialog_utils.dart';
-import 'package:ambulance/model/my_user.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/authentication/register/register_navigator.dart';
+import 'package:hospital/dialog_utils.dart';
+import 'package:hospital/hospital_screens/home_screen_hospital.dart';
+import 'package:hospital/model/my_user.dart';
 
 import '../../firebase_utils.dart';
 import '../../methods/common_methods.dart';
-import '../../screen_selection/screen_selection.dart';
 
 class RegisterScreenViewModel extends ChangeNotifier {
   var emailController = TextEditingController(text: 'ahmed.mohamed7@gmail.com');
@@ -69,7 +69,8 @@ class RegisterScreenViewModel extends ChangeNotifier {
         // navigator.showMessage('Register Successfully');
         DialogUtils.showMessage(context, 'Register Successfully',
             title: 'Sign-Up', posActionName: 'ok', posAction: () {
-          Navigator.of(context).pushReplacementNamed(ScreenSelection.routeName);
+          Navigator.of(context)
+              .pushReplacementNamed(HomeScreenHospital.routeName);
         });
       } on FirebaseAuthException catch (e) {
         // print('this error is unknown ${e.code}');

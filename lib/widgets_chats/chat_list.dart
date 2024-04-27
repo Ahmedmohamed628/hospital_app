@@ -1,5 +1,5 @@
-import 'package:ambulance/widgets_chats/sender_message_card.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/widgets_chats/sender_message_card.dart';
 
 import '../info.dart';
 import 'my_message_card.dart';
