@@ -1,33 +1,47 @@
 class MyUser {
-  static const String collectionName = 'users';
+  static const String collectionName = 'Hospitals';
   String? id;
   String? email;
-  String? name;
+  String? hospitalName;
   String? phoneNumber;
   String? address;
+  String? doctorId;
+  String? doctorName;
+  String? gender;
 
-  MyUser(
-      {required this.id,
-      required this.phoneNumber,
-      required this.address,
-      required this.name,
-      required this.email});
+  MyUser({
+    required this.id,
+    required this.phoneNumber,
+    required this.address,
+    required this.hospitalName,
+    required this.email,
+    required this.doctorId,
+    required this.doctorName,
+    required this.gender,
+  });
 
   MyUser.fromFireStore(Map<String, dynamic> data)
       : this(
-            id: data['id'],
-            phoneNumber: data['phoneNumber'],
-            address: data['address'],
-            email: data['email'],
-            name: data['name']);
+          id: data['id'],
+          phoneNumber: data['phoneNumber'],
+          address: data['address'],
+          hospitalName: data['HospitalName'],
+          email: data['email'],
+          doctorId: data['doctorId'],
+          doctorName: data['doctorName'],
+          gender: data['gender'],
+        );
 
   Map<String, dynamic> toFireStore() {
     return {
       'id': id,
       'phoneNumber': phoneNumber,
       'address': address,
-      'name': name,
-      'email': email
+      'hospitalName': hospitalName,
+      'email': email,
+      'doctorId': doctorId,
+      'doctorName': doctorName,
+      'gender': gender,
     };
   }
 }

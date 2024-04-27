@@ -40,12 +40,25 @@ class RegisterScreenViewModel extends ChangeNotifier {
           password: passwordController.text,
         );
         // print(credential.user?.uid ?? '');
+
+        // String? id;
+        // String? email;
+        // String? hospitalName;
+        // String? phoneNumber;
+        // String? address;
+        // String? doctorId;
+        // String? doctorName;
+        // String? gender;
         MyUser myUser = MyUser(
-            phoneNumber: phoneNumber.text,
-            address: address.text,
-            id: credential.user?.uid ?? '',
-            name: nameController.text,
-            email: emailController.text);
+          phoneNumber: phoneNumber.text,
+          address: address.text,
+          id: credential.user?.uid ?? '',
+          hospitalName: nameController.text,
+          email: emailController.text,
+          doctorId: emailController.text,
+          doctorName: emailController.text,
+          gender: emailController.text,
+        );
         // var authProvider = Provider.of<AuthProvider>(context,listen: false);
         // authProvider.updateUser(myUser);
 
