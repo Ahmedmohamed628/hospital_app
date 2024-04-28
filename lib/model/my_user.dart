@@ -1,3 +1,5 @@
+import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
+
 class MyUser {
   static const String collectionName = 'Hospitals';
   String? id;
@@ -8,6 +10,7 @@ class MyUser {
   String? doctorId;
   String? doctorName;
   String? gender;
+  String? status;
 
   MyUser({
     required this.id,
@@ -18,6 +21,7 @@ class MyUser {
     required this.doctorId,
     required this.doctorName,
     required this.gender,
+    required this.status,
   });
 
   MyUser.fromFireStore(Map<String, dynamic> data)
@@ -30,6 +34,7 @@ class MyUser {
           doctorId: data['doctorId'],
           doctorName: data['doctorName'],
           gender: data['gender'],
+          status: data['status'],
         );
 
   Map<String, dynamic> toFireStore() {
@@ -42,120 +47,130 @@ class MyUser {
       'doctorId': doctorId,
       'doctorName': doctorName,
       'gender': gender,
+      'status': status,
     };
   }
 }
 
-class Patient {
-  static const String collectionName = 'patient';
-  String? nationalId;
-  String? id;
-  String? chronicDiseases;
-  String? height;
-  String? weight;
-  String? age;
-  String? gender;
-
-  Patient(
-      {required this.nationalId,
-      required this.id,
-      required this.chronicDiseases,
-      required this.height,
-      required this.weight,
-      required this.age,
-      required this.gender});
-
-  Patient.fromFireStore(Map<String, dynamic> data)
-      : this(
-            nationalId: data['nationalId'],
-            id: data['id'],
-            chronicDiseases: data['chronicDiseases'],
-            height: data['height'],
-            weight: data['weight'],
-            age: data['age'],
-            gender: data['gender']);
-
-  Map<String, dynamic> toFireStore() {
-    return {
-      'nationalId': nationalId,
-      'id': id,
-      'chronicDiseases': chronicDiseases,
-      'height': height,
-      'weight': weight,
-      'age': age,
-      'gender': gender
-    };
+class Message {
+  final String message;
+  Message(this.message);
+  factory Message.fromJson(jasonData) {
+    return Message(jasonData[ChatScreenHospital.kmessage]);
   }
 }
 
-class Observer {
-  static const String collectionName = 'observer';
-  String? nationalId;
-  String? id;
-  String? email;
-  String? name;
-  String? age;
-  String? gender;
 
-  Observer(
-      {required this.nationalId,
-      required this.id,
-      required this.email,
-      required this.name,
-      required this.age,
-      required this.gender});
+// class Patient {
+//   static const String collectionName = 'patient';
+//   String? nationalId;
+//   String? id;
+//   String? chronicDiseases;
+//   String? height;
+//   String? weight;
+//   String? age;
+//   String? gender;
 
-  Observer.fromFireStore(Map<String, dynamic> data)
-      : this(
-            nationalId: data['nationalId'],
-            id: data['id'],
-            email: data['email'],
-            name: data['name'],
-            age: data['age'],
-            gender: data['gender']);
+//   Patient(
+//       {required this.nationalId,
+//       required this.id,
+//       required this.chronicDiseases,
+//       required this.height,
+//       required this.weight,
+//       required this.age,
+//       required this.gender});
 
-  Map<String, dynamic> toFireStore() {
-    return {
-      'nationalId': nationalId,
-      'id': id,
-      'name': name,
-      'email': email,
-      'age': age,
-      'gender': gender
-    };
-  }
-}
+//   Patient.fromFireStore(Map<String, dynamic> data)
+//       : this(
+//             nationalId: data['nationalId'],
+//             id: data['id'],
+//             chronicDiseases: data['chronicDiseases'],
+//             height: data['height'],
+//             weight: data['weight'],
+//             age: data['age'],
+//             gender: data['gender']);
 
-class Hospital {
-  static const String collectionName = 'Hospital';
-  String? doctorId;
-  String? id;
-  String? email;
-  String? doctorName;
-  String? gender;
+//   Map<String, dynamic> toFireStore() {
+//     return {
+//       'nationalId': nationalId,
+//       'id': id,
+//       'chronicDiseases': chronicDiseases,
+//       'height': height,
+//       'weight': weight,
+//       'age': age,
+//       'gender': gender
+//     };
+//   }
+// }
 
-  Hospital(
-      {required this.doctorId,
-      required this.id,
-      required this.email,
-      required this.doctorName,
-      required this.gender});
+// class Observer {
+//   static const String collectionName = 'observer';
+//   String? nationalId;
+//   String? id;
+//   String? email;
+//   String? name;
+//   String? age;
+//   String? gender;
 
-  Hospital.fromFireStore(Map<String, dynamic> data)
-      : this(
-            doctorId: data['doctorId'],
-            id: data['id'],
-            email: data['email'],
-            doctorName: data['doctorName'],
-            gender: data['gender']);
+//   Observer(
+//       {required this.nationalId,
+//       required this.id,
+//       required this.email,
+//       required this.name,
+//       required this.age,
+//       required this.gender});
 
-  Map<String, dynamic> toFireStore() {
-    return {
-      'doctorId': doctorId,
-      'id': id,
-      'doctorName': doctorName,
-      'email': email,
-      'gender': gender
-    };
-  }
-}
+//   Observer.fromFireStore(Map<String, dynamic> data)
+//       : this(
+//             nationalId: data['nationalId'],
+//             id: data['id'],
+//             email: data['email'],
+//             name: data['name'],
+//             age: data['age'],
+//             gender: data['gender']);
+
+//   Map<String, dynamic> toFireStore() {
+//     return {
+//       'nationalId': nationalId,
+//       'id': id,
+//       'name': name,
+//       'email': email,
+//       'age': age,
+//       'gender': gender
+//     };
+//   }
+// }
+
+// class Hospital {
+//   static const String collectionName = 'Hospital';
+//   String? doctorId;
+//   String? id;
+//   String? email;
+//   String? doctorName;
+//   String? gender;
+
+//   Hospital(
+//       {required this.doctorId,
+//       required this.id,
+//       required this.email,
+//       required this.doctorName,
+//       required this.gender});
+
+//   Hospital.fromFireStore(Map<String, dynamic> data)
+//       : this(
+//             doctorId: data['doctorId'],
+//             id: data['id'],
+//             email: data['email'],
+//             doctorName: data['doctorName'],
+//             gender: data['gender']);
+
+//   Map<String, dynamic> toFireStore() {
+//     return {
+//       'doctorId': doctorId,
+//       'id': id,
+//       'doctorName': doctorName,
+//       'email': email,
+//       'gender': gender
+//     };
+//   }
+// }

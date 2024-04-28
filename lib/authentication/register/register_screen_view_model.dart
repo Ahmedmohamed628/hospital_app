@@ -54,6 +54,7 @@ class RegisterScreenViewModel extends ChangeNotifier {
           doctorId: doctorId.text,
           doctorName: doctorName.text,
           gender: gender.text,
+          status: null,
         );
         // var authProvider = Provider.of<AuthProvider>(context,listen: false);
         // authProvider.updateUser(myUser);
