@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
@@ -7,23 +8,29 @@ import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
 import 'package:hospital/hospital_screens/screen_hospital_registeration.dart';
 import 'package:hospital/splash_screen/splash_screen.dart';
+import 'package:hospital/utils.dart';
 import 'authentication/login/login_screen.dart';
 import 'authentication/register/register_screen.dart';
 
 void main() async {
+  await setup();
+  FirebaseFirestore.instance.settings =
+      Settings(cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);
+  runApp(MyApp());
+}
+
+Future<void> setup() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(
     options: FirebaseOptions(
       apiKey: 'AIzaSyDGoIsHdQjW9hidXSdbW3xS4YqKVGfYJGI',
       appId: '1:237732499396:android:fc5cf8ca28138255cfde91',
-      messagingSenderId: 'sendid',
+      messagingSenderId: '867907366273',
       projectId: 'emergency-app-da505',
       storageBucket: 'emergency-app-da505.appspot.com',
     ),
   );
-  FirebaseFirestore.instance.settings =
-      Settings(cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);
-  runApp(MyApp());
+  await registerServices();
 }
 
 class MyApp extends StatelessWidget {

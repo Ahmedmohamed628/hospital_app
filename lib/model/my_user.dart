@@ -52,13 +52,13 @@ class MyUser {
   }
 }
 
-class Message {
-  final String message;
-  Message(this.message);
-  factory Message.fromJson(jasonData) {
-    return Message(jasonData[ChatScreenHospital.kmessage]);
-  }
-}
+// class Message {
+//   final String message;
+//   Message(this.message);
+//   factory Message.fromJson(jasonData) {
+//     return Message(jasonData[ChatScreenHospital.kmessage]);
+//   }
+// }
 
 
 // class Patient {

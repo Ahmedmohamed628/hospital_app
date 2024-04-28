@@ -17,7 +17,6 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen>
     implements RegisterNavigator {
-  var confirmationPasswordController = TextEditingController(text: '123456');
   RegisterScreenViewModel viewModelRegister = RegisterScreenViewModel();
 
   @override
@@ -134,26 +133,6 @@ class _RegisterScreenState extends State<RegisterScreen>
                           }
                           if (text.length < 6) {
                             return 'Password should be at least 6 characters';
-                          }
-                          return null;
-                        },
-                        isPassword: true,
-                      ),
-                      //confirm pass
-                      CustomTextFormField(
-                        prefixIcon:
-                            Icon(Icons.password, color: MyTheme.redColor),
-                        //lock_outline_sharp
-                        label: 'Confirm Password',
-                        keyboardType: TextInputType.number,
-                        controller: confirmationPasswordController,
-                        validator: (text) {
-                          if (text == null || text.trim().isEmpty) {
-                            return 'Please Enter the Confirmation Password';
-                          }
-                          if (text !=
-                              viewModelRegister.passwordController.text) {
-                            return "password doesn't match";
                           }
                           return null;
                         },
