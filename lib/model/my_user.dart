@@ -29,7 +29,7 @@ class MyUser {
           id: data['id'],
           phoneNumber: data['phoneNumber'],
           address: data['address'],
-          hospitalName: data['HospitalName'],
+          hospitalName: data['hospitalName'],
           email: data['email'],
           doctorId: data['doctorId'],
           doctorName: data['doctorName'],

@@ -30,7 +30,7 @@ Future<void> setup() async {
       storageBucket: 'emergency-app-da505.appspot.com',
     ),
   );
-  await registerServices();
+  // await registerServices();
 }
 
 class MyApp extends StatelessWidget {

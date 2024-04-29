@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:get_it/get_it.dart';
 
 import 'model/my_user.dart';
 
@@ -22,15 +23,15 @@ class FirebaseUtils {
     return docSnapshot.data();
   }
 
-  Stream<QuerySnapshot> getHospitalUsers() {
-    return FirebaseFirestore.instance
-        .collection("Hospitals")
-        .withConverter(
-            fromFirestore: (snapshot, options) =>
-                MyUser.fromFireStore(snapshot.data()!),
-            toFirestore: (user, options) => user.toFireStore())
-        .snapshots();
-  }
+  // Stream<QuerySnapshot> getHospitalUsers() {
+  //   return FirebaseFirestore.instance
+  //       .collection("Hospitals")
+  //       .withConverter(
+  //           fromFirestore: (snapshot, options) =>
+  //               MyUser.fromFireStore(snapshot.data()!),
+  //           toFirestore: (user, options) => user.toFireStore())
+  //       .snapshots();
+  // }
 
   // static Future<List<MyUser>> getUsersByCollection(String collectionName) async {
   // // Create a query to get users where collectionName matches the provided value

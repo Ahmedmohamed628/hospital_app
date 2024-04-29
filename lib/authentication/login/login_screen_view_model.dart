@@ -10,10 +10,8 @@ class LoginScreenViewModel extends ChangeNotifier {
   var emailController = TextEditingController(text: 'ahmed.mohamed7@gmail.com');
   var passwordController = TextEditingController(text: '123456');
   CommonMethods cMethods = CommonMethods();
-  User? _user;
-  User? get user {
-    return _user;
-  }
+
+  static User? user;
 
   //todo: hold data - handle logic
   late LoginNavigator navigator;
@@ -27,7 +25,7 @@ class LoginScreenViewModel extends ChangeNotifier {
             .signInWithEmailAndPassword(
                 email: emailController.text, password: passwordController.text);
         if (credential.user != null) {
-          _user = credential.user;
+          user = credential.user;
         }
 
         // var user = await FirebaseUtils.readUserFromFireStore(credential.user?.uid??"");
