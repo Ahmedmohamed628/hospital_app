@@ -1,8 +1,8 @@
 import 'dart:io';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
 import 'package:firebase_storage/firebase_storage.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/authentication/login/login_screen_view_model.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
@@ -50,27 +50,35 @@ class _PrivateChatState extends State<PrivateChat> {
                 style: TextStyle(color: MyTheme.whiteColor)),
             centerTitle: true,
             backgroundColor: MyTheme.redColor),
-        body: StreamBuilder(
-            stream: getChatData(currentUser!.id, otherUser!.id),
-            builder: (context, snapshot) {
-              Chat? chat = snapshot.data?.data();
-              List<ChatMessage> messages = [];
-              if (chat != null && chat.messages != null) {
-                messages = generateChatMessagesList(chat.messages!);
-              }
-              ;
-              return DashChat(
-                  messageOptions: const MessageOptions(
-                    showOtherUsersAvatar: true,
-                    showTime: true,
-                  ),
-                  inputOptions: InputOptions(alwaysShowSend: true, trailing: [
-                    _mediaMessageButton(),
-                  ]),
-                  currentUser: currentUser!,
-                  onSend: sendmessage,
-                  messages: messages);
-            }));
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/chat_list2.jpg'),
+              fit: BoxFit.cover, // Adjust as needed (cover, contain, etc.)
+            ),
+          ),
+          child: StreamBuilder(
+              stream: getChatData(currentUser!.id, otherUser!.id),
+              builder: (context, snapshot) {
+                Chat? chat = snapshot.data?.data();
+                List<ChatMessage> messages = [];
+                if (chat != null && chat.messages != null) {
+                  messages = generateChatMessagesList(chat.messages!);
+                }
+                ;
+                return DashChat(
+                    messageOptions: const MessageOptions(
+                      showOtherUsersAvatar: true,
+                      showTime: true,
+                    ),
+                    inputOptions: InputOptions(alwaysShowSend: true, trailing: [
+                      _mediaMessageButton(),
+                    ]),
+                    currentUser: currentUser!,
+                    onSend: sendmessage,
+                    messages: messages);
+              }),
+        ));
   }
 
   Future<void> sendmessage(ChatMessage chatMessage) async {

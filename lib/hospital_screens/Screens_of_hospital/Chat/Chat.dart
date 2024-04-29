@@ -1,18 +1,14 @@
 import 'dart:developer';
 
-import 'package:flutter/cupertino.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:hospital/authentication/login/login_screen_view_model.dart';
-import 'package:hospital/firebase_utils.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/chat_profile_widget.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/private_chat.dart';
 import 'package:hospital/model/chat_model.dart';
 import 'package:hospital/model/message_model.dart';
 import 'package:hospital/model/my_user.dart';
 import 'package:hospital/theme/theme.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:path/path.dart';
 
 class ChatScreenHospital extends StatelessWidget {
   static const String routeName = 'Chat-screen-hospital';
@@ -26,7 +22,14 @@ class ChatScreenHospital extends StatelessWidget {
           title: Text("Chat", style: TextStyle(color: MyTheme.whiteColor)),
           centerTitle: true,
           backgroundColor: MyTheme.redColor),
-      body: _chatList(),
+      body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(
+              image: AssetImage('assets/images/chat_list2.jpg'),
+              fit: BoxFit.cover, // Adjust as needed (cover, contain, etc.)
+            ),
+          ),
+          child: _chatList()),
     );
   }
 }
