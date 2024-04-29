@@ -49,7 +49,6 @@ class MyApp extends StatelessWidget {
         ChatScreenHospital.routeName: (context) => ChatScreenHospital(),
         HistoryScreenHospital.routeName: (context) => HistoryScreenHospital(),
         SettingsScreenHospital.routeName: (context) => SettingsScreenHospital(),
-        // PrivateChat.routeName: (context) => PrivateChat(),
         ScreenHospitalRegisteration.routeName: (context) =>
             ScreenHospitalRegisteration(),
       },

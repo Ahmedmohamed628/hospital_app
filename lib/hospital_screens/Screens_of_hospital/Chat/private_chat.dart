@@ -135,7 +135,7 @@ class _PrivateChatState extends State<PrivateChat> {
                     ChatMedia(
                         url: ImageURL, fileName: "", type: MediaType.image)
                   ]);
-              sendmessage(chatMessage);
+              sendmessage(chatMessage); //test
             }
           }
         },
