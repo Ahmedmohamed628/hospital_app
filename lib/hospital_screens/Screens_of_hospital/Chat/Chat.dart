@@ -133,8 +133,13 @@ Future<void> sendChaMessage(String uid1, String uid2, Message message) async {
     },
   );
 }
-// Stream getChatData(String uid1, String uid2)async{
-//     String chatID = generateChatID(uid1: uid1, uid2: uid2);
-//     return
 
-// }
+Stream getChatData(String uid1, String uid2) {
+  String chatID = generateChatID(uid1: uid1, uid2: uid2);
+  var snapshots = FirebaseFirestore.instance
+      .collection(Chat.collectionName)
+      .withConverter(
+          fromFirestore: (snapshots, _) => Chat.fromJson(snapshots.data()!),
+          toFirestore: (chat, _) => chat.toJson());
+  return snapshots.doc(chatID).snapshots();
+}
