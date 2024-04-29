@@ -36,18 +36,17 @@ class ChatScreenHospital extends StatelessWidget {
 
 Widget _chatList() {
   var snapshots = FirebaseFirestore.instance
-      .collection("Hospitals")
+      .collection("patients")
       .withConverter(
           fromFirestore: (snapshot, options) =>
-              MyUser.fromFireStore(snapshot.data()!),
+              Mypatient.fromFireStore(snapshot.data()!),
           toFirestore: (user, options) => user.toFireStore())
       .snapshots();
   return StreamBuilder(
     stream: snapshots,
     builder: (context, snapshot) {
       if (snapshot.hasError) {
-        log(snapshot.hasError.toString());
-        return Text("no data");
+        return Center(child: Text("no data"));
       }
 
       if (snapshot.hasData && snapshot.data != null) {
@@ -55,7 +54,7 @@ Widget _chatList() {
         return ListView.builder(
             itemCount: users.length,
             itemBuilder: (context, Index) {
-              MyUser user = users[Index].data();
+              Mypatient user = users[Index].data();
               return ChatTile(
                   user: user,
                   onTap: () async {

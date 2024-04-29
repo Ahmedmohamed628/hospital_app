@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:hospital/model/my_user.dart';
 
 class ChatTile extends StatelessWidget {
-  final MyUser user;
+  final Mypatient user;
   final Function onTap;
   const ChatTile({
     super.key,
@@ -23,7 +23,7 @@ class ChatTile extends StatelessWidget {
         backgroundImage: NetworkImage(
             "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.pinterest.com%2Fpin%2F35-no-profile-pictures-for-tiktok-default-collection--746260600768706252%2F&psig=AOvVaw3m79rAdC4RZt__KRJ1CF2Z&ust=1714428510641000&source=images&cd=vfe&opi=89978449&ved=0CBIQjRxqFwoTCLjBs4T25YUDFQAAAAAdAAAAABAE"),
       ),
-      title: Text(user.hospitalName!),
+      title: Text(user.name!),
     );
   }
 }

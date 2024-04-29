@@ -10,7 +10,6 @@ class LoginScreenViewModel extends ChangeNotifier {
   var emailController = TextEditingController(text: 'ahmed.mohamed7@gmail.com');
   var passwordController = TextEditingController(text: '123456');
   CommonMethods cMethods = CommonMethods();
-
   static User? user;
 
   //todo: hold data - handle logic

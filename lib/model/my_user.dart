@@ -52,6 +52,64 @@ class MyUser {
   }
 }
 
+class Mypatient {
+  static const String collectionName = 'patients';
+  String? id;
+  String? email;
+  String? name;
+  String? phoneNumber;
+  String? address;
+  String? nationalId;
+  String? chronicDiseases;
+  String? height;
+  String? weight;
+  String? age;
+  String? gender;
+
+  Mypatient(
+      {required this.id,
+      required this.phoneNumber,
+      required this.address,
+      required this.name,
+      required this.email,
+      required this.nationalId,
+      required this.chronicDiseases,
+      required this.height,
+      required this.weight,
+      required this.age,
+      required this.gender});
+
+  Mypatient.fromFireStore(Map<String, dynamic> data)
+      : this(
+            id: data['id'],
+            phoneNumber: data['phoneNumber'],
+            address: data['address'],
+            email: data['email'],
+            name: data['name'],
+            nationalId: data['nationalId'],
+            chronicDiseases: data['chronicDiseases'],
+            height: data['height'],
+            weight: data['weight'],
+            age: data['age'],
+            gender: data['gender']);
+
+  Map<String, dynamic> toFireStore() {
+    return {
+      'id': id,
+      'phoneNumber': phoneNumber,
+      'address': address,
+      'name': name,
+      'email': email,
+      'nationalId': nationalId,
+      'chronicDiseases': chronicDiseases,
+      'height': height,
+      'weight': weight,
+      'age': age,
+      'gender': gender
+    };
+  }
+}
+
 // class Message {
 //   final String message;
 //   Message(this.message);

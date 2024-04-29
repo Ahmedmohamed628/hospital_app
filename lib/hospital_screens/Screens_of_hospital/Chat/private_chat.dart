@@ -15,7 +15,7 @@ import 'package:path/path.dart' as p;
 
 class PrivateChat extends StatefulWidget {
   static const String routeName = 'Private-screen-hospital';
-  final MyUser chatuser;
+  final Mypatient chatuser;
 
   const PrivateChat({
     super.key,
@@ -38,7 +38,7 @@ class _PrivateChatState extends State<PrivateChat> {
     );
     otherUser = ChatUser(
         id: widget.chatuser.id!,
-        firstName: widget.chatuser.hospitalName,
+        firstName: widget.chatuser.name,
         profileImage: null); //put profile picture later
   }
 
@@ -46,7 +46,7 @@ class _PrivateChatState extends State<PrivateChat> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text(widget.chatuser.hospitalName!,
+            title: Text(widget.chatuser.name!,
                 style: TextStyle(color: MyTheme.whiteColor)),
             centerTitle: true,
             backgroundColor: MyTheme.redColor),
