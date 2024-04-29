@@ -14,14 +14,16 @@ class _RootScreenHospitalState extends State<RootScreenHospital> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          title: Text("Home", style: TextStyle(color: MyTheme.whiteColor)),
-          centerTitle: true,
-          backgroundColor: MyTheme.redColor,
-          leading: IconButton(
-              onPressed: () {
-                Navigator.of(context).pop(HomeScreenHospital.routeName);
-              },
-              icon: Icon(Icons.arrow_back, color: MyTheme.whiteColor))),
+        title: Text("Home", style: TextStyle(color: MyTheme.whiteColor)),
+        centerTitle: true,
+        backgroundColor: MyTheme.redColor,
+        // leading: IconButton(
+        //   onPressed: () {
+        //     Navigator.of(context).pop(HomeScreenHospital.routeName);
+        //   },
+        //   icon: Icon(Icons.arrow_back, color: MyTheme.whiteColor),
+        // ),
+      ),
       backgroundColor: MyTheme.whiteColor,
     );
   }

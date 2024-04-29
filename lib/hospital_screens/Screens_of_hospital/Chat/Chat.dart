@@ -6,7 +6,9 @@ import 'package:flutter/widgets.dart';
 import 'package:hospital/authentication/login/login_screen_view_model.dart';
 import 'package:hospital/firebase_utils.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/chat_profile_widget.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/private_chat.dart';
 import 'package:hospital/model/chat_model.dart';
+import 'package:hospital/model/message_model.dart';
 import 'package:hospital/model/my_user.dart';
 import 'package:hospital/theme/theme.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -21,8 +23,9 @@ class ChatScreenHospital extends StatelessWidget {
     //   future: messages.get(),
     return Scaffold(
       appBar: AppBar(
-        title: Text("chat"),
-      ),
+          title: Text("Chat", style: TextStyle(color: MyTheme.whiteColor)),
+          centerTitle: true,
+          backgroundColor: MyTheme.redColor),
       body: _chatList(),
     );
   }
@@ -55,10 +58,20 @@ Widget _chatList() {
                   onTap: () async {
                     final chatExists = await checkChatExists(
                         LoginScreenViewModel.user!.uid, user.id!);
+                    print(chatExists);
                     if (!chatExists) {
                       await createNewChat(
                           LoginScreenViewModel.user!.uid, user.id!);
                     }
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) {
+                          return PrivateChat(
+                            chatuser: user,
+                          );
+                        },
+                      ),
+                    );
                     //02:56 -- 41 00
                   });
             });
@@ -101,3 +114,27 @@ Future<void> createNewChat(String uid1, String uid2) async {
   final chat = Chat(id: chatID, participants: [uid1, uid2], messages: []);
   await docRef.set(chat);
 }
+
+Future<void> sendChaMessage(String uid1, String uid2, Message message) async {
+  String chatID = generateChatID(uid1: uid1, uid2: uid2);
+  var snapshots = FirebaseFirestore.instance
+      .collection(Chat.collectionName)
+      .withConverter(
+          fromFirestore: (snapshots, _) => Chat.fromJson(snapshots.data()!),
+          toFirestore: (chat, _) => chat.toJson());
+  final docRef = snapshots.doc(chatID);
+  await docRef.update(
+    {
+      "messages": FieldValue.arrayUnion(
+        [
+          message.toJson(),
+        ],
+      ),
+    },
+  );
+}
+// Stream getChatData(String uid1, String uid2)async{
+//     String chatID = generateChatID(uid1: uid1, uid2: uid2);
+//     return
+
+// }

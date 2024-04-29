@@ -3,6 +3,7 @@ import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/private_chat.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
@@ -48,6 +49,7 @@ class MyApp extends StatelessWidget {
         ChatScreenHospital.routeName: (context) => ChatScreenHospital(),
         HistoryScreenHospital.routeName: (context) => HistoryScreenHospital(),
         SettingsScreenHospital.routeName: (context) => SettingsScreenHospital(),
+        // PrivateChat.routeName: (context) => PrivateChat(),
         ScreenHospitalRegisteration.routeName: (context) =>
             ScreenHospitalRegisteration(),
       },
