@@ -11,6 +11,7 @@ class MyUser {
   String? doctorName;
   String? gender;
   String? status;
+  String? pfpURL;
 
   MyUser({
     required this.id,
@@ -22,20 +23,21 @@ class MyUser {
     required this.doctorName,
     required this.gender,
     required this.status,
+    required this.pfpURL,
   });
 
   MyUser.fromFireStore(Map<String, dynamic> data)
       : this(
-          id: data['id'],
-          phoneNumber: data['phoneNumber'],
-          address: data['address'],
-          hospitalName: data['hospitalName'],
-          email: data['email'],
-          doctorId: data['doctorId'],
-          doctorName: data['doctorName'],
-          gender: data['gender'],
-          status: data['status'],
-        );
+            id: data['id'],
+            phoneNumber: data['phoneNumber'],
+            address: data['address'],
+            hospitalName: data['hospitalName'],
+            email: data['email'],
+            doctorId: data['doctorId'],
+            doctorName: data['doctorName'],
+            gender: data['gender'],
+            status: data['status'],
+            pfpURL: data['pfpURL']);
 
   Map<String, dynamic> toFireStore() {
     return {
@@ -48,6 +50,7 @@ class MyUser {
       'doctorName': doctorName,
       'gender': gender,
       'status': status,
+      'pfpURL': pfpURL
     };
   }
 }
@@ -65,6 +68,7 @@ class Mypatient {
   String? weight;
   String? age;
   String? gender;
+  String? pfpURL;
 
   Mypatient(
       {required this.id,
@@ -77,7 +81,8 @@ class Mypatient {
       required this.height,
       required this.weight,
       required this.age,
-      required this.gender});
+      required this.gender,
+      required this.pfpURL});
 
   Mypatient.fromFireStore(Map<String, dynamic> data)
       : this(
@@ -91,7 +96,8 @@ class Mypatient {
             height: data['height'],
             weight: data['weight'],
             age: data['age'],
-            gender: data['gender']);
+            gender: data['gender'],
+            pfpURL: data['pfpURL']);
 
   Map<String, dynamic> toFireStore() {
     return {
@@ -105,7 +111,8 @@ class Mypatient {
       'height': height,
       'weight': weight,
       'age': age,
-      'gender': gender
+      'gender': gender,
+      'pfpURL': pfpURL
     };
   }
 }

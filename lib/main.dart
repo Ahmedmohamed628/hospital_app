@@ -1,15 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_analytics/firebase_analytics.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
-import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/private_chat.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
 import 'package:hospital/hospital_screens/screen_hospital_registeration.dart';
 import 'package:hospital/splash_screen/splash_screen.dart';
-import 'package:hospital/utils.dart';
 import 'authentication/login/login_screen.dart';
 import 'authentication/register/register_screen.dart';
 
