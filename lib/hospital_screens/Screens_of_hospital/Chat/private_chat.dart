@@ -2,9 +2,9 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:hospital/authentication/login/login_screen_view_model.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
 import 'package:hospital/model/chat_model.dart';
 import 'package:hospital/model/message_model.dart';
@@ -28,13 +28,15 @@ class PrivateChat extends StatefulWidget {
 
 class _PrivateChatState extends State<PrivateChat> {
   ChatUser? currentUser, otherUser;
+  final userCurrent = FirebaseAuth.instance.currentUser;
+
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
     currentUser = ChatUser(
-      id: LoginScreenViewModel.user!.uid,
-      firstName: LoginScreenViewModel.user!.displayName,
+      id: userCurrent!.uid,
+      firstName: userCurrent!.displayName,
     );
     otherUser = ChatUser(
         id: widget.chatuser.id!,

@@ -1,8 +1,6 @@
-import 'dart:developer';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:hospital/authentication/login/login_screen_view_model.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/chat_profile_widget.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/private_chat.dart';
 import 'package:hospital/model/chat_model.dart';
@@ -51,6 +49,7 @@ Widget _chatList() {
 
       if (snapshot.hasData && snapshot.data != null) {
         final users = snapshot.data!.docs;
+        final userCurrent = FirebaseAuth.instance.currentUser;
         return ListView.builder(
             itemCount: users.length,
             itemBuilder: (context, Index) {
@@ -58,12 +57,11 @@ Widget _chatList() {
               return ChatTile(
                   user: user,
                   onTap: () async {
-                    final chatExists = await checkChatExists(
-                        LoginScreenViewModel.user!.uid, user.id!);
+                    final chatExists =
+                        await checkChatExists(userCurrent!.uid, user.id!);
                     print(chatExists);
                     if (!chatExists) {
-                      await createNewChat(
-                          LoginScreenViewModel.user!.uid, user.id!);
+                      await createNewChat(userCurrent.uid, user.id!);
                     }
                     Navigator.of(context).push(
                       MaterialPageRoute(

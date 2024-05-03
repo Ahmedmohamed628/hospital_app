@@ -1,8 +1,13 @@
+import 'dart:developer';
+
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/authentication/login/login_navigator.dart';
 import 'package:hospital/dialog_utils.dart';
+import 'package:hospital/firebase_utils.dart';
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
+import 'package:hospital/model/my_user.dart';
 
 import '../../methods/common_methods.dart';
 
@@ -11,6 +16,7 @@ class LoginScreenViewModel extends ChangeNotifier {
   var passwordController = TextEditingController(text: '123456');
   CommonMethods cMethods = CommonMethods();
   static User? user;
+  MyUser? userStatus;
 
   //todo: hold data - handle logic
   late LoginNavigator navigator;
@@ -27,28 +33,52 @@ class LoginScreenViewModel extends ChangeNotifier {
           user = credential.user;
         }
 
-        // var user = await FirebaseUtils.readUserFromFireStore(credential.user?.uid??"");
+        var userStatus = await FirebaseUtils.readUserFromFireStore(user!.uid);
+        log(userStatus!.status.toString());
         // if(user == null){
         //   return ;
         // }
-
         // if (user != null) {
         //   // User is authenticated, navigate to home screen
         //   Navigator.pushReplacementNamed(context, '/home');
         // }
-
         // var authProvider = Provider.of<AuthProvider>(context,listen: false);
         // authProvider.updateUser(user);
         //todo: hide loading
         navigator.hideMyLoading();
         //todo: show message
+        // Future<MyUser> getUserStatus(String id) async {
+        //   final snapshot = await FirebaseFirestore.instance
+        //       .collection("Hospitals")
+        //       .where("id", isEqualTo: id)
+        //       .get();
+        //   final userStatus = snapshot.docs.map((e) => MyUser.fromFireStore());
+        //   return userStatus;
+        // }
+
         // navigator.showMessage('Login Successfully');
         // todo: yro7 y3ml navigate 3la el homescreen 3la tool =>>>>>>>
-        DialogUtils.showMessage(context, 'login Successfully',
-            title: 'Sign-Up', posActionName: 'ok', posAction: () {
-          Navigator.pushReplacementNamed(context, HomeScreenHospital.routeName);
-          ;
-        });
+        if (userStatus.status == null) {
+          DialogUtils.showMessage(
+              context, 'Wait for admin approval and try again',
+              title: 'Log-in', posActionName: 'ok', posAction: () {});
+          // ignore: unrelated_type_equality_checks
+        } else if (userStatus.status == true) {
+          DialogUtils.showMessage(context, 'login Successfully',
+              title: 'Log-in', posActionName: 'ok', posAction: () {
+            Navigator.pushReplacementNamed(
+                context, HomeScreenHospital.routeName);
+            ;
+          });
+        } else {
+          DialogUtils.showMessage(context, "Sorry,you can't log to the app ",
+              title: 'Log-in', posActionName: 'ok', posAction: () {});
+        }
+        // DialogUtils.showMessage(context, 'login Successfully',
+        //     title: 'Sign-Up', posActionName: 'ok', posAction: () {
+        //   Navigator.pushReplacementNamed(context, HomeScreenHospital.routeName);
+        //   ;
+        // });
       } on FirebaseAuthException catch (e) {
         if (e.code == 'user-not-found') {
           //todo: hide loading
@@ -74,7 +104,6 @@ class LoginScreenViewModel extends ChangeNotifier {
               'Your internet is not available. Check your connection and try again.',
               context);
         }
-
         // print('this error is due to authentication ${e.code}');
       } catch (e) {
         //todo: hide loading

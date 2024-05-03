@@ -66,7 +66,7 @@ class RegisterScreenViewModel extends ChangeNotifier {
           doctorName: doctorName.text,
           gender: gender.text,
           status: null,
-          pfpURL: pfpURL ?? null,
+          pfpURL: pfpURL,
         );
         // var authProvider = Provider.of<AuthProvider>(context,listen: false);
         // authProvider.updateUser(myUser);
@@ -89,6 +89,28 @@ class RegisterScreenViewModel extends ChangeNotifier {
         navigator.hideMyLoading();
         //todo: show message
         // navigator.showMessage('Register Successfully');
+        // if (myUser.status == null) {
+        //   DialogUtils.showMessage(context,
+        //       'Register Successfully wait for admin to accpet your account',
+        //       title: 'Sign-Up', posActionName: 'ok', posAction: () {
+        //     Navigator.of(context)
+        //         .pushReplacementNamed(HomeScreenHospital.routeName);
+        //   });
+        //   // ignore: unrelated_type_equality_checks
+        // } else if (myUser.status == true) {
+        //   DialogUtils.showMessage(context, 'Register Successfully',
+        //       title: 'Sign-Up', posActionName: 'ok', posAction: () {
+        //     Navigator.of(context)
+        //         .pushReplacementNamed(HomeScreenHospital.routeName);
+        //   });
+        // } else {
+        //   DialogUtils.showMessage(
+        //       context, 'Register Successfully but you are banned',
+        //       title: 'Sign-Up', posActionName: 'ok', posAction: () {
+        //     Navigator.of(context)
+        //         .pushReplacementNamed(HomeScreenHospital.routeName);
+        //   });
+        // }
         DialogUtils.showMessage(context, 'Register Successfully',
             title: 'Sign-Up', posActionName: 'ok', posAction: () {
           Navigator.of(context)

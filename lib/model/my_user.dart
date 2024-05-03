@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
 
 class MyUser {
@@ -10,7 +12,7 @@ class MyUser {
   String? doctorId;
   String? doctorName;
   String? gender;
-  String? status;
+  bool? status;
   String? pfpURL;
 
   MyUser({
