@@ -4,6 +4,7 @@ import 'package:hospital/hospital_screens/Screens_of_hospital/Hisorty/History.da
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/ambulance/ambulance.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/root/root.dart';
+import 'package:hospital/main.dart';
 import 'package:hospital/theme/theme.dart';
 
 import 'Screens_of_hospital/deaf/deaf.dart';
@@ -48,7 +49,7 @@ class _HomeScreenHospitalState extends State<HomeScreenHospital> {
               BottomNavigationBarItem(
                   icon: Icon(Icons.history, size: 22), label: 'History'),
               BottomNavigationBarItem(
-                  icon: Icon(Icons.volume_off, size: 22), label: 'Deaf'),
+                  icon: Icon(Icons.sign_language, size: 22), label: 'Deaf'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.settings, size: 22), label: 'Settings'),
             ],

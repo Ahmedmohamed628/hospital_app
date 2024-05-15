@@ -1,8 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/deaf/logic.dart';
 import 'package:tflite_v2/tflite_v2.dart';
-
-import 'logic.dart';
 
 List<CameraDescription>? cameras;
 
@@ -32,17 +31,18 @@ class FirstScreen extends StatefulWidget {
 }
 
 class _FirstScreenState extends State<FirstScreen> {
-  loadmodel() async {
-    Tflite.loadModel(
-      model: "assets/detect.tflite", //assets/detect.tflite
-      labels: "assets/labels.txt",
-    );
-  }
-
   @override
   void initState() {
     super.initState();
-    loadmodel();
+    loadModel();
+    initializeAppAndCameras();
+  }
+
+  loadModel() async {
+    await Tflite.loadModel(
+      model: "assets/detect.tflite",
+      labels: "assets/labels.txt",
+    );
   }
 
   @override
@@ -50,8 +50,6 @@ class _FirstScreenState extends State<FirstScreen> {
     var h = MediaQuery.of(context).size.height;
     var w = MediaQuery.of(context).size.width;
     return Scaffold(
-      //todo: lottie assets
-      //Lottie.asset('assets/images/patient_lottie.json')
       backgroundColor: Colors.white,
       body: Center(
         child: Container(
@@ -65,7 +63,6 @@ class _FirstScreenState extends State<FirstScreen> {
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(20)),
               onPressed: () {
-                initializeAppAndCameras;
                 Navigator.pushReplacement(
                   context,
                   MaterialPageRoute(
@@ -73,9 +70,7 @@ class _FirstScreenState extends State<FirstScreen> {
                   ),
                 );
               },
-              child: Text(
-                'Start Detecting',
-              ),
+              child: Text('Start Detecting'),
             ),
           ),
         ),

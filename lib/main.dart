@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
@@ -5,18 +6,12 @@ import 'package:flutter/material.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/deaf/deaf.dart';
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
 import 'package:hospital/hospital_screens/screen_hospital_registeration.dart';
 import 'package:hospital/splash_screen/splash_screen.dart';
 import 'authentication/login/login_screen.dart';
 import 'authentication/register/register_screen.dart';
-
-void main() async {
-  await setup();
-  FirebaseFirestore.instance.settings =
-      Settings(cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);
-  runApp(MyApp());
-}
 
 Future<void> setup() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -30,6 +25,14 @@ Future<void> setup() async {
     ),
   );
   // await registerServices();
+}
+
+void main() async {
+  await setup();
+
+  FirebaseFirestore.instance.settings =
+      Settings(cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -51,6 +54,7 @@ class MyApp extends StatelessWidget {
         SettingsScreenHospital.routeName: (context) => SettingsScreenHospital(),
         ScreenHospitalRegisteration.routeName: (context) =>
             ScreenHospitalRegisteration(),
+        DeafScreenHospital.routeName: (context) => DeafScreenHospital(),
       },
     );
   }
