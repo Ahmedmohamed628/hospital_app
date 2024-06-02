@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
-import 'package:hospital/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/ambulance/ambulance.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/root/root.dart';
-import 'package:hospital/main.dart';
 import 'package:hospital/theme/theme.dart';
 
 import 'Screens_of_hospital/deaf/deaf.dart';
@@ -46,8 +44,8 @@ class _HomeScreenHospitalState extends State<HomeScreenHospital> {
                   icon: Icon(Icons.medication, size: 22), label: 'Ambulance'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.home, size: 22), label: 'Home'),
-              BottomNavigationBarItem(
-                  icon: Icon(Icons.history, size: 22), label: 'History'),
+              // BottomNavigationBarItem(
+              //     icon: Icon(Icons.history, size: 22), label: 'History'),
               BottomNavigationBarItem(
                   icon: Icon(Icons.sign_language, size: 22), label: 'Deaf'),
               BottomNavigationBarItem(
@@ -64,7 +62,7 @@ class _HomeScreenHospitalState extends State<HomeScreenHospital> {
     ChatScreenHospital(),
     AmbulanceScreenHospital(),
     RootScreenHospital(),
-    HistoryScreenHospital(),
+    // HistoryScreenHospital(),
     DeafScreenHospital(),
     SettingsScreenHospital()
   ];

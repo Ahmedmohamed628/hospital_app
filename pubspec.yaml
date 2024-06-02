@@ -55,6 +55,8 @@ dependencies:
   path: ^1.9.0
   tflite_flutter: ^0.10.4
   image: ^4.1.7
+  line_awesome_flutter: ^2.0.0
+
 
 dev_dependencies:
   flutter_test:

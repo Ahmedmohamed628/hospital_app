@@ -91,17 +91,18 @@ class _RegisterScreenState extends State<RegisterScreen>
                           height: MediaQuery.of(context).size.height * 0.01),
                       // user name
                       CustomTextFormField(
-                          prefixIcon: Icon(Icons.local_hospital,
-                              color: MyTheme.redColor),
-                          //Icons.drive_file_rename_outline
-                          label: 'Hosbital name',
-                          controller: viewModelRegister.nameController,
-                          validator: (text) {
-                            if (text == null || text.trim().isEmpty) {
-                              return 'Please Enter User Name';
-                            }
-                            return null;
-                          }),
+                        prefixIcon:
+                            Icon(Icons.local_hospital, color: MyTheme.redColor),
+                        //Icons.drive_file_rename_outline
+                        label: 'Hosbital name',
+                        controller: viewModelRegister.nameController,
+                        validator: (text) {
+                          if (text == null || text.trim().isEmpty) {
+                            return 'Please Enter User Name';
+                          }
+                          return null;
+                        },
+                      ),
                       // email
                       CustomTextFormField(
                           prefixIcon: Icon(Icons.email_rounded,
@@ -189,7 +190,7 @@ class _RegisterScreenState extends State<RegisterScreen>
                         prefixIcon: Icon(Icons.person_pin_sharp,
                             color: MyTheme.redColor),
                         //lock_outline_sharp
-                        label: 'Name',
+                        label: 'Doctor Name',
                         controller: viewModelRegister.doctorName,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
@@ -201,11 +202,11 @@ class _RegisterScreenState extends State<RegisterScreen>
                       CustomTextFormField(
                         prefixIcon: Icon(Icons.male, color: MyTheme.redColor),
                         //lock_outline_sharp
-                        label: 'Gender',
+                        label: 'Doctor Gender',
                         controller: viewModelRegister.gender,
                         validator: (text) {
                           if (text == null || text.trim().isEmpty) {
-                            return 'Please enter a your Name Gender';
+                            return 'Please enter a your Gender';
                           }
                           return null;
                         },

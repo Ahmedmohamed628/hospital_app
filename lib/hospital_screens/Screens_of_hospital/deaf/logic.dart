@@ -87,7 +87,9 @@ class _HomeState extends State<Home> {
     return Scaffold(
       body: Stack(
         children: [
-          CameraPreview(cameraController!),
+          Positioned.fill(
+            child: CameraPreview(cameraController!),
+          ),
           Positioned(
             bottom: 0,
             left: 0,

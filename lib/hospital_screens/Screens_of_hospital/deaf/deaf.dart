@@ -1,6 +1,7 @@
 import 'package:camera/camera.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/deaf/logic.dart';
+import 'package:hospital/theme/theme.dart';
 import 'package:tflite_v2/tflite_v2.dart';
 
 List<CameraDescription>? cameras;
@@ -52,25 +53,32 @@ class _FirstScreenState extends State<FirstScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Container(
-          color: Theme.of(context).primaryColor,
-          child: Container(
-            margin: EdgeInsets.all(20),
-            height: 50,
-            width: w,
-            child: MaterialButton(
-              color: Colors.red,
-              shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(20)),
-              onPressed: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Home(),
-                  ),
-                );
-              },
-              child: Text('Start Detecting'),
+        child: Scaffold(
+          appBar: AppBar(
+            backgroundColor: MyTheme.redColor,
+            title: Text('sign language',
+                style: TextStyle(color: MyTheme.whiteColor)),
+            centerTitle: true,
+          ),
+          body: Center(
+            child: Container(
+              margin: EdgeInsets.all(20),
+              height: 50,
+              width: w,
+              child: MaterialButton(
+                color: Colors.red,
+                shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(20)),
+                onPressed: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Home(),
+                    ),
+                  );
+                },
+                child: Text('Start Detecting'),
+              ),
             ),
           ),
         ),

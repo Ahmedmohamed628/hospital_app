@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/update_profile.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/deaf/deaf.dart';
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
 import 'package:hospital/hospital_screens/screen_hospital_registeration.dart';
@@ -50,11 +51,12 @@ class MyApp extends StatelessWidget {
         RegisterScreen.routeName: (context) => RegisterScreen(),
         HomeScreenHospital.routeName: (context) => HomeScreenHospital(),
         ChatScreenHospital.routeName: (context) => ChatScreenHospital(),
-        HistoryScreenHospital.routeName: (context) => HistoryScreenHospital(),
+        // HistoryScreenHospital.routeName: (context) => HistoryScreenHospital(),
         SettingsScreenHospital.routeName: (context) => SettingsScreenHospital(),
         ScreenHospitalRegisteration.routeName: (context) =>
             ScreenHospitalRegisteration(),
         DeafScreenHospital.routeName: (context) => DeafScreenHospital(),
+        ProfilePage.routeName: (context) => ProfilePage(),
       },
     );
   }

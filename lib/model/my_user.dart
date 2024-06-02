@@ -1,5 +1,6 @@
 import 'dart:ffi';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
 
 class MyUser {
@@ -14,32 +15,35 @@ class MyUser {
   String? gender;
   bool? status;
   String? pfpURL;
+  Timestamp? createdAt;
 
-  MyUser({
-    required this.id,
-    required this.phoneNumber,
-    required this.address,
-    required this.hospitalName,
-    required this.email,
-    required this.doctorId,
-    required this.doctorName,
-    required this.gender,
-    required this.status,
-    required this.pfpURL,
-  });
+  MyUser(
+      {required this.id,
+      required this.phoneNumber,
+      required this.address,
+      required this.hospitalName,
+      required this.email,
+      required this.doctorId,
+      required this.doctorName,
+      required this.gender,
+      required this.status,
+      required this.pfpURL,
+      required this.createdAt});
 
   MyUser.fromFireStore(Map<String, dynamic> data)
       : this(
-            id: data['id'],
-            phoneNumber: data['phoneNumber'],
-            address: data['address'],
-            hospitalName: data['hospitalName'],
-            email: data['email'],
-            doctorId: data['doctorId'],
-            doctorName: data['doctorName'],
-            gender: data['gender'],
-            status: data['status'],
-            pfpURL: data['pfpURL']);
+          id: data['id'],
+          phoneNumber: data['phoneNumber'],
+          address: data['address'],
+          hospitalName: data['hospitalName'],
+          email: data['email'],
+          doctorId: data['doctorId'],
+          doctorName: data['doctorName'],
+          gender: data['gender'],
+          status: data['status'],
+          pfpURL: data['pfpURL'],
+          createdAt: data['createdAt'],
+        );
 
   Map<String, dynamic> toFireStore() {
     return {
@@ -52,7 +56,8 @@ class MyUser {
       'doctorName': doctorName,
       'gender': gender,
       'status': status,
-      'pfpURL': pfpURL
+      'pfpURL': pfpURL,
+      'sentAt': createdAt
     };
   }
 }
