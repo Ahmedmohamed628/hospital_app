@@ -116,19 +116,6 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
                 //   ),
                 // ),,
                 ,
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.04,
-                    width: MediaQuery.of(context).size.width * 0.08,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: MyTheme.redColor),
-                    child: Icon(LineAwesomeIcons.alternate_pencil,
-                        color: Colors.white, size: 20),
-                  ),
-                ),
               ]),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Text(userdata != null ? userdata!.hospitalName.toString() : "",

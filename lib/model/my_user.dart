@@ -104,15 +104,15 @@ class Mypatient {
           email: data['email'],
           name: data['name'],
           nationalId: data['nationalId'],
-          chronicDiseases: List<String>.from(data['chronicDiseases'] ?? null),
-          WatchHistory: List<String>.from(data['WatchHistory'] ?? null),
+          chronicDiseases: List<String>.from(data['chronicDiseases'] ?? []),
+          WatchHistory: List<String>.from(data['WatchHistory'] ?? []),
           height: data['height'],
           weight: data['weight'],
           age: data['age'],
           gender: data['gender'],
           pfpURL: data['pfpURL'],
           createdAt: data['createdAt'],
-          prescription: List<String>.from(data['prescription'] ?? null),
+          prescription: List<String>.from(data['prescription'] ?? []),
         );
 
   Map<String, dynamic> toFireStore() {
