@@ -10,6 +10,7 @@ import 'package:hospital/model/message_model.dart';
 import 'package:hospital/model/my_user.dart';
 import 'package:hospital/theme/theme.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:path/path.dart' as p;
 
 class PrivateChat extends StatefulWidget {
@@ -47,10 +48,17 @@ class _PrivateChatState extends State<PrivateChat> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-            title: Text(widget.chatuser.name!,
-                style: TextStyle(color: MyTheme.whiteColor)),
-            centerTitle: true,
-            backgroundColor: MyTheme.redColor),
+          title: Text(widget.chatuser.name!,
+              style: TextStyle(color: MyTheme.whiteColor)),
+          centerTitle: true,
+          backgroundColor: MyTheme.redColor,
+          leading: IconButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              icon:
+                  Icon(LineAwesomeIcons.angle_left, color: MyTheme.whiteColor)),
+        ),
         body: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
