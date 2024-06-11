@@ -59,22 +59,42 @@ class _RootScreenHospitalState extends State<RootScreenHospital> {
     );
   }
 
-  requestPermission() async {
-    await locationManager.isServiceEnabled();
-    await locationManager.requestService();
-    await Permission.locationWhenInUse.isDenied.then((valueOfPermission) {
-      if (valueOfPermission) {
-        Permission.locationWhenInUse.request();
-      }
-    });
+  Future<void> requestPermission() async {
+    bool isLocationServiceEnabled = await locationManager.isServiceEnabled();
+    if (!isLocationServiceEnabled) {
+      await locationManager.requestService();
+    }
 
-    await Permission.notification.isDenied.then((valueOfPermission) {
-      if (valueOfPermission) {
-        Permission.notification.request();
-      }
-    });
+    bool isLocationPermissionDenied =
+        await Permission.locationWhenInUse.isDenied;
+    if (isLocationPermissionDenied) {
+      await Permission.locationWhenInUse.request();
+    }
+
+    bool isNotificationPermissionDenied =
+        await Permission.notification.isDenied;
+    if (isNotificationPermissionDenied) {
+      await Permission.notification.request();
+    }
   }
 }
+
+//   requestPermission() async {
+//     await locationManager.isServiceEnabled();
+//     await locationManager.requestService();
+//     await Permission.locationWhenInUse.isDenied.then((valueOfPermission) {
+//       if (valueOfPermission) {
+//         Permission.locationWhenInUse.request();
+//       }
+//     });
+
+//     await Permission.notification.isDenied.then((valueOfPermission) {
+//       if (valueOfPermission) {
+//         Permission.notification.request();
+//       }
+//     });
+//   }
+// }
 
 //todo: 3shan a5ly de tzhr lw mfesh requests lkn lw feh ygeeb container feh (yes.no) w lw 2bl yro7 3la google maps====>>
 ///      SingleChildScrollView(

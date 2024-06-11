@@ -47,7 +47,10 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
       weight: null, // Assuming weight is in kg or a unit you use
       age: null,
       gender: null,
-      pfpURL: null, WatchHistory: null, createdAt: null, prescription: null);
+      pfpURL: null,
+      WatchHistory: null,
+      createdAt: null,
+      prescription: null);
 
   // sign out function
   Future<void> _signOut(BuildContext context) async {
@@ -208,33 +211,7 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
                 ),
               ),
 ////////////////////test
-              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
-              ListTile(
-                tileColor: MyTheme.messageColor.withOpacity(0.1),
-                onTap: () {
-                  // _contactAdmin();
-                },
-                leading: Container(
-                  height: MediaQuery.of(context).size.height * 0.06,
-                  width: MediaQuery.of(context).size.width * 0.13,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: MyTheme.redColor.withOpacity(0.1)),
-                  child: Icon(LineAwesomeIcons.envelope),
-                ),
-                title: Text('Contact Admin',
-                    style:
-                        TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-                trailing: Container(
-                  height: MediaQuery.of(context).size.height * 0.03,
-                  width: MediaQuery.of(context).size.width * 0.09,
-                  decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(100),
-                      color: MyTheme.searchBarColor.withOpacity(0.1)),
-                  child: Icon(LineAwesomeIcons.angle_right,
-                      color: Colors.grey, size: 18),
-                ),
-              ),
+
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               //theme
               ListTile(
