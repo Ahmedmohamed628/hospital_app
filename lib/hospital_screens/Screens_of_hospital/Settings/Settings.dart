@@ -5,6 +5,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/authentication/login/login_screen.dart';
 import 'package:hospital/dialog_utils.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/private_chat.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/update_profile.dart';
 import 'package:hospital/model/my_user.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
@@ -26,6 +28,22 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
   final userCurrent = FirebaseAuth.instance.currentUser;
   MyUser? userdata;
   String? userpfp;
+  final String adminId =
+      "Ramadany1w9FsalmazYuamidowQKLgYrovanaOzDnardeen7tokaG"; // Fixed admin ID
+  Mypatient admin = Mypatient(
+      id: "Ramadany1w9FsalmazYuamidowQKLgYrovanaOzDnardeen7tokaG",
+      email: null,
+      name: "Admin",
+      phoneNumber: null,
+      address: null,
+      nationalId: null,
+      chronicDiseases: null,
+      height: null, // Assuming height is in cm or a unit you use
+      weight: null, // Assuming weight is in kg or a unit you use
+      age: null,
+      gender: null,
+      pfpURL: null, WatchHistory: null, createdAt: null, prescription: null);
+
   // sign out function
   Future<void> _signOut(BuildContext context) async {
     await FirebaseAuth.instance.signOut().then((value) => Navigator.of(context)
@@ -154,6 +172,36 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
                       color: Colors.grey, size: 18),
                 ),
               ),
+///////////////////test
+
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              ListTile(
+                tileColor: MyTheme.messageColor.withOpacity(0.1),
+                onTap: () {
+                  _contactAdmin();
+                },
+                leading: Container(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  width: MediaQuery.of(context).size.width * 0.13,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: MyTheme.redColor.withOpacity(0.1)),
+                  child: Icon(LineAwesomeIcons.envelope),
+                ),
+                title: Text('Contact Admin',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                trailing: Container(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                  width: MediaQuery.of(context).size.width * 0.09,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: MyTheme.searchBarColor.withOpacity(0.1)),
+                  child: Icon(LineAwesomeIcons.angle_right,
+                      color: Colors.grey, size: 18),
+                ),
+              ),
+////////////////////test
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               ListTile(
                 tileColor: MyTheme.messageColor.withOpacity(0.1),
@@ -259,5 +307,23 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
         .map((doc) => MyUser.fromFireStore(doc.data().toFireStore()));
 
     return userdata.single;
+  }
+
+  void _contactAdmin() async {
+    final userCurrent = FirebaseAuth.instance.currentUser;
+
+    if (admin.id != null) {
+      final chatExists = await checkChatExists(userCurrent!.uid, adminId);
+      if (!chatExists) {
+        await createNewChat(userCurrent.uid, adminId);
+      }
+      Navigator.of(context).push(
+        MaterialPageRoute(
+          builder: (context) {
+            return PrivateChat(chatuser: admin);
+          },
+        ),
+      );
+    }
   }
 }

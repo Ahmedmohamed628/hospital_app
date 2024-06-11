@@ -69,7 +69,7 @@ HealthFactory health = HealthFactory(useHealthConnectIfAvailable: true);
 Future fetchData(void Function() callBack) async {
   // get data within the last 24 hours
   final now = DateTime.now();
-  final yesterday = now.subtract(Duration(hours: 24));
+  final yesterday = now.subtract(Duration(hours: 1));
 
   // Clear old data points
   _healthDataList.clear();

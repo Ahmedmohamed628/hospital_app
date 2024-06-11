@@ -4,6 +4,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/authentication/login/login_navigator.dart';
+import 'package:hospital/hospital_screens/wating.dart';
 import 'package:hospital/dialog_utils.dart';
 import 'package:hospital/firebase_utils.dart';
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
@@ -58,20 +59,20 @@ class LoginScreenViewModel extends ChangeNotifier {
 
         // navigator.showMessage('Login Successfully');
         // todo: yro7 y3ml navigate 3la el homescreen 3la tool =>>>>>>>
-        if (userStatus.status == null) {
+        if (userStatus!.status == null) {
           DialogUtils.showMessage(
               context, 'Wait for admin approval and try again',
-              title: 'Log-in', posActionName: 'ok', posAction: () {});
-          // ignore: unrelated_type_equality_checks
-        } else if (userStatus.status == true) {
-          DialogUtils.showMessage(context, 'login Successfully',
+              title: 'Log-in', posActionName: 'ok', posAction: () {
+            Navigator.pushReplacementNamed(context, WaitingScreen.routeName);
+          });
+        } else if (userStatus!.status == true) {
+          DialogUtils.showMessage(context, 'Login Successfully',
               title: 'Log-in', posActionName: 'ok', posAction: () {
             Navigator.pushReplacementNamed(
                 context, HomeScreenHospital.routeName);
-            ;
           });
         } else {
-          DialogUtils.showMessage(context, "Sorry,you can't log to the app ",
+          DialogUtils.showMessage(context, "Sorry, you can't log to the app",
               title: 'Log-in', posActionName: 'ok', posAction: () {});
         }
         // DialogUtils.showMessage(context, 'login Successfully',
@@ -113,5 +114,21 @@ class LoginScreenViewModel extends ChangeNotifier {
         // print('this error is due to unknown $e');
       }
     }
+  }
+
+  void _listenToUserStatusChanges(BuildContext context, String userId) {
+    FirebaseFirestore.instance
+        .collection(MyUser.collectionName)
+        .doc(userId)
+        .snapshots()
+        .listen((DocumentSnapshot snapshot) {
+      if (snapshot.exists) {
+        final data = snapshot.data() as Map<String, dynamic>;
+        final userStatus = data['status'] as bool?;
+        if (userStatus == true) {
+          Navigator.pushReplacementNamed(context, HomeScreenHospital.routeName);
+        }
+      }
+    });
   }
 }

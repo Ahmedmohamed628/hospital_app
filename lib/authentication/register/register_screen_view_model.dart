@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/authentication/login/login_screen.dart';
+import 'package:hospital/hospital_screens/wating.dart';
 import 'package:hospital/authentication/register/register_navigator.dart';
 import 'package:hospital/authentication/register/register_screen.dart';
 import 'package:hospital/dialog_utils.dart';
@@ -119,7 +120,7 @@ class RegisterScreenViewModel extends ChangeNotifier {
           DialogUtils.showMessage(
               context, 'Wait for admin approval and try log in later',
               title: 'Sign-Up', posActionName: 'ok', posAction: () {
-            Navigator.of(context).pushReplacementNamed(LoginScreen.routeName);
+            Navigator.pushReplacementNamed(context, WaitingScreen.routeName);
           });
         });
       } on FirebaseAuthException catch (e) {

@@ -1,10 +1,8 @@
-import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/hospital_screens/wating.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
-import 'package:hospital/hospital_screens/Screens_of_hospital/Hisorty/History.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/update_profile.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/deaf/deaf.dart';
@@ -57,6 +55,7 @@ class MyApp extends StatelessWidget {
             ScreenHospitalRegisteration(),
         DeafScreenHospital.routeName: (context) => DeafScreenHospital(),
         ProfilePage.routeName: (context) => ProfilePage(),
+        WaitingScreen.routeName: (context) => WaitingScreen(),
       },
     );
   }
