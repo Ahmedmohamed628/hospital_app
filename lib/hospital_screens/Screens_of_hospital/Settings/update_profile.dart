@@ -3,12 +3,15 @@
 import 'dart:io';
 import 'package:hospital/authentication/component/custom_text_form_field.dart';
 import 'package:hospital/model/my_user.dart';
+import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 import 'package:path/path.dart' as p;
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
+
+import '../../../theme/theme.dart';
 
 ///////////////////////////// //////////////////////
 
@@ -201,15 +204,14 @@ class _ProfilePageState extends State<ProfilePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Profile'),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.save),
-            onPressed: _saveForm,
-          ),
-        ],
+        leading: IconButton(
+            icon: Icon(LineAwesomeIcons.angle_left),
+            onPressed: () {
+              Navigator.of(context).pop();
+            }),
       ),
       body: _user == null
-          ? Center(child: CircularProgressIndicator())
+          ? Center(child: CircularProgressIndicator(color: MyTheme.redColor))
           : Padding(
               padding: const EdgeInsets.all(16.0),
               child: Form(
@@ -227,24 +229,42 @@ class _ProfilePageState extends State<ProfilePage> {
                       },
                       child: CircleAvatar(
                         radius: MediaQuery.of(context).size.width * 0.2,
-                        child: ClipOval(
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.4,
-                            height: MediaQuery.of(context).size.width * 0.4,
-                            child: ProfilePage.selectedImage != null
-                                ? Image.file(ProfilePage.selectedImage!,
-                                    fit: BoxFit.cover)
-                                : _user!.pfpURL != null
-                                    ? Image.network(_user!.pfpURL!,
+                        child: Stack(
+                          children: [
+                            ClipOval(
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.4,
+                                height: MediaQuery.of(context).size.width * 0.4,
+                                child: ProfilePage.selectedImage != null
+                                    ? Image.file(ProfilePage.selectedImage!,
                                         fit: BoxFit.cover)
-                                    : Image.asset('assets/images/user.jpg',
-                                        fit: BoxFit.cover),
-                          ),
+                                    : _user!.pfpURL != null
+                                        ? Image.network(_user!.pfpURL!,
+                                            fit: BoxFit.cover)
+                                        : Image.asset('assets/images/user.jpg',
+                                            fit: BoxFit.cover),
+                              ),
+                            ),
+                            Positioned(
+                              bottom: 0,
+                              right: 0,
+                              child: Container(
+                                height:
+                                    MediaQuery.of(context).size.height * 0.04,
+                                width: MediaQuery.of(context).size.width * 0.08,
+                                decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(100),
+                                    color: MyTheme.redColor),
+                                child: Icon(LineAwesomeIcons.alternate_pencil,
+                                    color: Colors.white, size: 20),
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ),
                     CustomTextFormField(
-                      label: 'Hosbital name',
+                      label: 'Hospital name',
                       controller: _hospitalNameController,
                       validator: (text) {
                         if (text == null || text.trim().isEmpty) {
@@ -253,23 +273,6 @@ class _ProfilePageState extends State<ProfilePage> {
                         return null;
                       },
                     ),
-                    // CustomTextFormField(
-                    //   label: 'Email',
-                    //   controller: _emailController,
-                    //   keyboardType: TextInputType.emailAddress,
-                    //   validator: (text) {
-                    //     if (text == null || text.trim().isEmpty) {
-                    //       return 'Please Enter An Email';
-                    //     }
-                    //     bool emailValid = RegExp(
-                    //             r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                    //         .hasMatch(text);
-                    //     if (!emailValid) {
-                    //       return 'Please Enter Valid Email';
-                    //     }
-                    //     return null;
-                    //   },
-                    // ),
                     CustomTextFormField(
                       label: 'Phone Number',
                       controller: _phoneNumberController,
@@ -328,39 +331,60 @@ class _ProfilePageState extends State<ProfilePage> {
                         return null;
                       },
                     ),
-                    // CustomTextFormField(
-                    //   label: 'Weight',
-                    //   controller: _weightController,
-                    //   validator: (text) {
-                    //     if (text == null || text.trim().isEmpty) {
-                    //       return 'Please enter your Weight';
-                    //     }
-                    //     return null;
-                    //   },
-                    // ),
-                    // CustomTextFormField(
-                    //   label: 'Age',
-                    //   controller: _ageController,
-                    //   validator: (text) {
-                    //     if (text == null || text.trim().isEmpty) {
-                    //       return 'Please enter your Age';
-                    //     }
-                    //     return null;
-                    //   },
-                    // ),
-                    // CustomTextFormField(
-                    //   label: 'Gender',
-                    //   controller: _genderController,
-                    //   validator: (text) {
-                    //     if (text == null || text.trim().isEmpty) {
-                    //       return 'Please enter your Gender';
-                    //     }
-                    //     return null;
-                    //   },
-                    // ),
-                    ElevatedButton(
-                      onPressed: _changePassword,
-                      child: Text('Change Password'),
+
+                    //change password
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 3),
+                      child: ElevatedButton(
+                        onPressed: _changePassword,
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(
+                                Icons.change_circle,
+                                color: MyTheme.whiteColor,
+                              ),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.02,
+                              ),
+                              Text('Change Password',
+                                  style: TextStyle(
+                                      color: MyTheme.whiteColor,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15)),
+                            ]),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: MyTheme.messageColor,
+                            padding: EdgeInsets.symmetric(vertical: 10)),
+                        // Text('Change Password'),
+                      ),
+                    ),
+                    //confirm changes
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 20, vertical: 3),
+                      child: ElevatedButton(
+                        onPressed: () {
+                          _saveForm();
+                        },
+                        child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Icon(Icons.check_circle, color: Colors.white),
+                              SizedBox(
+                                width: MediaQuery.of(context).size.width * 0.02,
+                              ),
+                              Text('Confirm changes',
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.w600,
+                                      fontSize: 15)),
+                            ]),
+                        style: ElevatedButton.styleFrom(
+                            backgroundColor: MyTheme.redColor,
+                            padding: EdgeInsets.symmetric(vertical: 10)),
+                      ),
                     ),
                   ],
                 ),

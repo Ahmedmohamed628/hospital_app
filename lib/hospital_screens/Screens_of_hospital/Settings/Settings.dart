@@ -2,16 +2,20 @@ import 'dart:io';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/authentication/login/login_screen.dart';
 import 'package:hospital/dialog_utils.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/update_profile.dart';
 import 'package:hospital/model/my_user.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
+import 'package:hospital/model/my_user.dart';
 
 import '../../../authentication/register/register_navigator.dart';
 import '../../../methods/common_methods.dart';
 import '../../../theme/theme.dart';
+import 'bottom_sheet.dart';
 
 class SettingsScreenHospital extends StatefulWidget {
   static const String routeName = 'settings-screen-hospital';
@@ -22,6 +26,7 @@ class SettingsScreenHospital extends StatefulWidget {
 
 class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
   CommonMethods cMethods = CommonMethods();
+  bool isSwitched = false;
   late RegisterNavigator navigator;
   final userCurrent = FirebaseAuth.instance.currentUser;
   MyUser? userdata;
@@ -49,7 +54,6 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
 
   @override
   Widget build(BuildContext context) {
-    var isDark = MediaQuery.of(context).platformBrightness == Brightness.dark;
     return Scaffold(
       appBar: AppBar(
         backgroundColor: MyTheme.redColor,
@@ -91,19 +95,6 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
                 //   ),
                 // ),,
                 ,
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: Container(
-                    height: MediaQuery.of(context).size.height * 0.04,
-                    width: MediaQuery.of(context).size.width * 0.08,
-                    decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(100),
-                        color: MyTheme.redColor),
-                    child: Icon(LineAwesomeIcons.alternate_pencil,
-                        color: Colors.white, size: 20),
-                  ),
-                ),
               ]),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               Text(userdata != null ? userdata!.hospitalName.toString() : "",
@@ -111,28 +102,30 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
               Text(userdata != null ? userdata!.email.toString() : "",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w400)),
               SizedBox(height: MediaQuery.of(context).size.height * 0.025),
-              SizedBox(
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Navigator.of(context)
-                    //     .pushNamed(UpdateProfileScreen.routeName);
-                    Navigator.of(context).pushNamed(ProfilePage.routeName);
-                  },
-                  child: Text('Edit profile',
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w400,
-                          fontSize: 15)),
-                  style: ElevatedButton.styleFrom(
-                      backgroundColor: MyTheme.senderMessageColor),
-                ),
-              ),
+              // SizedBox(
+              //   child: ElevatedButton(
+              //     onPressed: () {
+              //       // Navigator.of(context)
+              //       //     .pushNamed(UpdateProfileScreen.routeName);
+              //       Navigator.of(context).pushNamed(ProfilePage.routeName);
+              //     },
+              //     child: Text('Edit profile',
+              //         style: TextStyle(
+              //             color: Colors.white,
+              //             fontWeight: FontWeight.w400,
+              //             fontSize: 15)),
+              //     style: ElevatedButton.styleFrom(
+              //         backgroundColor: MyTheme.senderMessageColor),
+              //   ),
+              // ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               const Divider(),
               SizedBox(height: MediaQuery.of(context).size.height * 0.01),
               ListTile(
                 tileColor: MyTheme.messageColor.withOpacity(0.1),
-                onTap: () {},
+                onTap: () {
+                  showBottomSheet();
+                },
                 leading: Container(
                   height: MediaQuery.of(context).size.height * 0.06,
                   width: MediaQuery.of(context).size.width * 0.13,
@@ -157,7 +150,34 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
               ListTile(
                 tileColor: MyTheme.messageColor.withOpacity(0.1),
-                onTap: () {},
+                onTap: () {
+                  // _contactAdmin();
+                },
+                leading: Container(
+                  height: MediaQuery.of(context).size.height * 0.06,
+                  width: MediaQuery.of(context).size.width * 0.13,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: MyTheme.redColor.withOpacity(0.1)),
+                  child: Icon(LineAwesomeIcons.envelope),
+                ),
+                title: Text('Contact Admin',
+                    style:
+                        TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
+                trailing: Container(
+                  height: MediaQuery.of(context).size.height * 0.03,
+                  width: MediaQuery.of(context).size.width * 0.09,
+                  decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(100),
+                      color: MyTheme.searchBarColor.withOpacity(0.1)),
+                  child: Icon(LineAwesomeIcons.angle_right,
+                      color: Colors.grey, size: 18),
+                ),
+              ),
+              SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              //theme
+              ListTile(
+                tileColor: MyTheme.messageColor.withOpacity(0.1),
                 leading: Container(
                   height: MediaQuery.of(context).size.height * 0.06,
                   width: MediaQuery.of(context).size.width * 0.13,
@@ -175,11 +195,23 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(100),
                       color: MyTheme.searchBarColor.withOpacity(0.1)),
-                  child: Icon(LineAwesomeIcons.angle_right,
-                      color: Colors.grey, size: 18),
+                  child: Switch(
+                    activeColor: MyTheme.whiteColor,
+                    activeThumbImage: AssetImage('assets/images/dark_mode.png'),
+                    activeTrackColor: MyTheme.redColor,
+                    inactiveThumbImage:
+                        AssetImage('assets/images/light_mode.png'),
+                    value: isSwitched,
+                    onChanged: (value) {
+                      setState(() {
+                        isSwitched = !isSwitched;
+                      });
+                    },
+                  ),
                 ),
               ),
               SizedBox(height: MediaQuery.of(context).size.height * 0.02),
+              // sign out
               ListTile(
                 tileColor: MyTheme.messageColor.withOpacity(0.1),
                 onTap: () {
@@ -209,13 +241,6 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
                 title: Text('Log_out',
                     style:
                         TextStyle(fontSize: 18, fontWeight: FontWeight.w500)),
-                // trailing: Container(
-                //   height: MediaQuery.of(context).size.height*0.03 , width: MediaQuery.of(context).size.width*0.09 ,
-                //   decoration: BoxDecoration(
-                //       borderRadius: BorderRadius.circular(100),
-                //       color: MyTheme.searchBarColor.withOpacity(0.1)),
-                //   child: Icon(LineAwesomeIcons.angle_right, color: Colors.grey, size: 18),
-                // ),
               ),
             ],
           ),
@@ -259,5 +284,10 @@ class _SettingsScreenHospitalState extends State<SettingsScreenHospital> {
         .map((doc) => MyUser.fromFireStore(doc.data().toFireStore()));
 
     return userdata.single;
+  }
+
+  void showBottomSheet() {
+    showModalBottomSheet(
+        context: context, builder: (context) => BottomSheetSettings());
   }
 }

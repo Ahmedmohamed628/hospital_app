@@ -8,9 +8,11 @@ import 'package:hospital/hospital_screens/Screens_of_hospital/Hisorty/History.da
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/update_profile.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/deaf/deaf.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/root/google_maps.dart';
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
 import 'package:hospital/hospital_screens/screen_hospital_registeration.dart';
 import 'package:hospital/splash_screen/splash_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'authentication/login/login_screen.dart';
 import 'authentication/register/register_screen.dart';
 
@@ -33,6 +35,14 @@ void main() async {
 
   FirebaseFirestore.instance.settings =
       Settings(cacheSizeBytes: Settings.CACHE_SIZE_UNLIMITED);
+
+  // await Permission.notification.isDenied.then((valueOfPermission) {
+  //   if(valueOfPermission)
+  //   {
+  //     Permission.notification.request();
+  //   }
+  // });
+
   runApp(MyApp());
 }
 
@@ -57,6 +67,7 @@ class MyApp extends StatelessWidget {
             ScreenHospitalRegisteration(),
         DeafScreenHospital.routeName: (context) => DeafScreenHospital(),
         ProfilePage.routeName: (context) => ProfilePage(),
+        GoogleMapsForHospital.routeName: (context) => GoogleMapsForHospital(),
       },
     );
   }
