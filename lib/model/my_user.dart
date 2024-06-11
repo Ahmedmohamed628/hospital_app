@@ -123,15 +123,15 @@ class Mypatient {
       'name': name,
       'email': email,
       'nationalId': nationalId,
-      'chronicDiseases': chronicDiseases,
-      'WatchHistory': WatchHistory,
+      'chronicDiseases': chronicDiseases ?? [],
+      'WatchHistory': WatchHistory ?? [],
       'height': height,
       'weight': weight,
       'age': age,
       'gender': gender,
       'pfpURL': pfpURL,
       'createdAt': createdAt,
-      'prescription': prescription,
+      'prescription': prescription ?? [],
     };
   }
 }
