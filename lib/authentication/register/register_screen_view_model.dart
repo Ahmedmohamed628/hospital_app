@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:hospital/authentication/login/login_screen.dart';
@@ -43,6 +44,26 @@ class RegisterScreenViewModel extends ChangeNotifier {
           email: emailController.text,
           password: passwordController.text,
         );
+        //todo => da goz2 el information bta3t el hospital lw hsyvha de le real time database
+        // DatabaseReference usersRef = FirebaseDatabase.instance.ref().child("Hospital").child(FirebaseAuth.instance.currentUser!.uid);
+        // Map hospitalDataMap = {
+        //   //todo: => el photo yd5l el sora bta3to fe el database (real time)
+        //   // "photo": urlOfUploadedImage,
+        //   // "car_details": driverCarInfo,
+        //   "doctorName": doctorName.text.trim(),
+        //   "email": emailController.text.trim(),
+        //   "phone": phoneNumber.text.trim(),
+        //   "id": credential.user?.uid ?? '',
+        //   "address": address.text.trim(),
+        //   "hospitalName": nameController.text.trim(),
+        //   "doctorId": doctorId.text.trim(),
+        //   "gender": gender.text.trim(),
+        //   "status": null,
+        //   "pfpURL": pfpURL,
+        //   "createdAt": Timestamp.now(),
+        // };
+        // usersRef.set(hospitalDataMap);
+        // usersRef.onValue.listen((event) { });
         // print(credential.user?.uid ?? '');
 
         // String? id;
