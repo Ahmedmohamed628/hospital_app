@@ -32,7 +32,7 @@ class _GoogleMapsForHospitalState extends State<GoogleMapsForHospital> {
   GoogleMapController? controllerGoogleMap;
   Position? currentPositionOfHospital;
   Color colorToShow = Colors.green;
-  String titleToShow = "Go online now";
+  String titleToShow = "GO ONLINE NOW";
   bool isHospitalAvailable = false;
 
   // de ms2ola 3n el real time data base
