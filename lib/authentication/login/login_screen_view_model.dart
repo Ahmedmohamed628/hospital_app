@@ -13,7 +13,7 @@ import 'package:hospital/model/my_user.dart';
 import '../../methods/common_methods.dart';
 
 class LoginScreenViewModel extends ChangeNotifier {
-  var emailController = TextEditingController(text: 'ekbal@gmail.com');
+  var emailController = TextEditingController(text: 'alamal23@gmail.com');
   var passwordController = TextEditingController(text: '123456');
   CommonMethods cMethods = CommonMethods();
   static User? user;

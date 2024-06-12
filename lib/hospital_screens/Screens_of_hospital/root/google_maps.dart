@@ -22,11 +22,11 @@ class GoogleMapsForHospital extends StatefulWidget {
 }
 
 class _GoogleMapsForHospitalState extends State<GoogleMapsForHospital> {
-  var nameController = TextEditingController(text: 'ahmed');
-  var phoneNumber = TextEditingController(text: '01228384694');
-  var doctorId = TextEditingController(text: '99');
-  var doctorName = TextEditingController(text: 'Mohammed');
-  var emailController = TextEditingController(text: 'ahmed.mohamed7@gmail.com');
+  // var nameController = TextEditingController(text: 'ahmed');
+  // var phoneNumber = TextEditingController(text: '01228384694');
+  // var doctorId = TextEditingController(text: '99');
+  // var doctorName = TextEditingController(text: 'Mohammed');
+  // var emailController = TextEditingController(text: 'ahmed.mohamed7@gmail.com');
   final Completer<GoogleMapController> googleMapCompleterController =
       Completer<GoogleMapController>();
   GoogleMapController? controllerGoogleMap;
