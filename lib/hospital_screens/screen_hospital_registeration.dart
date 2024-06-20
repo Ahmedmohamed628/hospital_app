@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
 import 'package:hospital/theme/theme.dart';
 import 'package:lottie/lottie.dart';
-
 import '../authentication/component/custom_text_form_field.dart';
+
 
 class ScreenHospitalRegisteration extends StatelessWidget {
   static const String routeName = 'screen-hospital';

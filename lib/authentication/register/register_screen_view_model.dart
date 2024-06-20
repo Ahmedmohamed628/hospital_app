@@ -17,14 +17,14 @@ import '../../methods/common_methods.dart';
 
 class RegisterScreenViewModel extends ChangeNotifier {
   static User? userSignUp;
-  var emailController = TextEditingController(text: 'ahmed.mohamed7@gmail.com');
+  var emailController = TextEditingController(text: 'elamal@gmail.com');
   var passwordController = TextEditingController(text: '123456');
-  var nameController = TextEditingController(text: 'ahmed');
+  var nameController = TextEditingController(text: 'elamal');
   var phoneNumber = TextEditingController(text: '01228384694');
   var address = TextEditingController(text: 'alexandria');
   // todo: da le el hospital
   var doctorId = TextEditingController(text: '99');
-  var doctorName = TextEditingController(text: 'Mohammed');
+  var doctorName = TextEditingController(text: 'ahmed');
   var gender = TextEditingController(text: 'Male');
 
   CommonMethods cMethods = CommonMethods();

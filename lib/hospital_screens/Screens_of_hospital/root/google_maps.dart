@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
+import '../../../pushNotification/push_notification_system.dart';
 import '../../../theme/theme.dart';
 
 String googleMapKey = 'AIzaSyDGoIsHdQjW9hidXSdbW3xS4YqKVGfYJGI';
@@ -117,16 +118,18 @@ class _GoogleMapsForHospitalState extends State<GoogleMapsForHospital> {
     newTripRequestReference = null;
   }
 
-  // initializePushNotificationSystem(){
-  //   PushNotificationSystem notificationSystem = PushNotificationSystem();
-  // }
-  //
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //   initializePushNotificationSystem();
-  // }
+  initializePushNotificationSystem(){
+    PushNotificationSystem notificationSystem = PushNotificationSystem();
+    notificationSystem.generateDeviceRegistrationToken();
+    notificationSystem.startListeningForNewNotification(context);
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    initializePushNotificationSystem();
+  }
 
   @override
   Widget build(BuildContext context) {

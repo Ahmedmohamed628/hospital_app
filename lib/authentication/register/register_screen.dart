@@ -8,6 +8,7 @@ import 'package:image_picker/image_picker.dart';
 import 'package:lottie/lottie.dart';
 
 import '../../dialog_utils.dart';
+import '../../theme/theme.dart';
 import '../component/custom_text_form_field.dart';
 import '../login/login_screen.dart';
 

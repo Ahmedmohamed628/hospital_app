@@ -5,9 +5,13 @@ import 'package:hospital/dialog_utils.dart';
 import 'package:hospital/methods/common_methods.dart';
 import 'package:hospital/theme/theme.dart';
 import 'package:provider/provider.dart';
-
+import '../../dialog_utils.dart';
+import '../../methods/common_methods.dart';
+import '../../theme/theme.dart';
 import '../component/custom_text_form_field.dart';
 import '../register/register_screen.dart';
+import 'login_navigator.dart';
+import 'login_screen_view_model.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String routeName = 'login-screen';

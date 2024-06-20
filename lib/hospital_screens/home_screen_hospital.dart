@@ -6,6 +6,7 @@ import 'package:hospital/hospital_screens/Screens_of_hospital/root/root.dart';
 import 'package:hospital/theme/theme.dart';
 
 import 'Screens_of_hospital/deaf/deaf.dart';
+import 'Screens_of_hospital/root/root.dart';
 
 class HomeScreenHospital extends StatefulWidget {
   static const String routeName = 'Home-screen-hospital';

@@ -132,11 +132,12 @@ class _AmbulanceBodyState extends State<AmbulanceBody> {
                     IconButton(
                       icon: Icon(
                         _ambulanceList[index].isWorking
-                            ? Icons.check_circle
-                            : Icons.error,
+                            ? Icons.error
+                        :Icons.check_circle,
                         color: _ambulanceList[index].isWorking
-                            ? Colors.green
-                            : Colors.red,
+                            ? Colors.red
+                        :Colors.green,
+                            // : Colors.red,
                       ),
                       onPressed: () => _toggleAmbulanceStatus(index),
                     ),

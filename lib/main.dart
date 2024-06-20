@@ -11,6 +11,7 @@ import 'package:hospital/hospital_screens/Screens_of_hospital/root/google_maps.d
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
 import 'package:hospital/hospital_screens/screen_hospital_registeration.dart';
 import 'package:hospital/splash_screen/splash_screen.dart';
+import 'package:permission_handler/permission_handler.dart';
 import 'authentication/login/login_screen.dart';
 import 'authentication/register/register_screen.dart';
 
