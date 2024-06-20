@@ -1,3 +1,4 @@
+import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,15 @@ import 'package:hospital/hospital_screens/Screens_of_hospital/root/google_maps.d
 import 'package:hospital/hospital_screens/home_screen_hospital.dart';
 import 'package:hospital/hospital_screens/screen_hospital_registeration.dart';
 import 'package:hospital/splash_screen/splash_screen.dart';
-import 'package:permission_handler/permission_handler.dart';
 import 'authentication/login/login_screen.dart';
 import 'authentication/register/register_screen.dart';
+
+List<CameraDescription>? cameras;
+
+Future<void> initializeAppAndCameras() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  cameras = await availableCameras();
+}
 
 Future<void> setup() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -25,6 +32,8 @@ Future<void> setup() async {
       storageBucket: 'emergency-app-da505.appspot.com',
     ),
   );
+  await initializeAppAndCameras();
+
   // await registerServices();
 }
 

@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dash_chat_2/dash_chat_2.dart';
@@ -41,7 +42,14 @@ class _PrivateChatState extends State<PrivateChat> {
     otherUser = ChatUser(
         id: widget.chatuser.id!,
         firstName: widget.chatuser.name,
-        profileImage: null); //put profile picture later
+        profileImage: widget.chatuser.pfpURL ?? null); //fixed profile
+    ////// seen test mark read when enter chat
+    markMessagesAsSeen(currentUser!.id, otherUser!.id).then((_) {
+      print("InitState: Marked messages as seen");
+    }).catchError((error) {
+      print("Error marking messages as seen: $error");
+    });
+    ////// seen test mark read when enter chat
   }
 
   @override
@@ -53,7 +61,10 @@ class _PrivateChatState extends State<PrivateChat> {
           centerTitle: true,
           backgroundColor: MyTheme.redColor,
           leading: IconButton(
-              onPressed: () {
+              onPressed: () async {
+                ///////seen test mark read when enter chat
+                await markMessagesAsSeen(currentUser!.id, otherUser!.id);
+                ///////seen test mark read when enter chat
                 Navigator.of(context).pop();
               },
               icon:
@@ -89,6 +100,50 @@ class _PrivateChatState extends State<PrivateChat> {
               }),
         ));
   }
+
+/////////logic for markMessagesAsSeen
+  Future<void> markMessagesAsSeen(String uid1, String uid2) async {
+    try {
+      String chatID = generateChatID(uid1: uid1, uid2: uid2);
+      log("Generated Chat ID: $chatID");
+
+      var chatDocRef = FirebaseFirestore.instance
+          .collection(Chat.collectionName)
+          .doc(chatID)
+          .withConverter<Chat>(
+            fromFirestore: (snapshot, _) => Chat.fromJson(snapshot.data()!),
+            toFirestore: (chat, _) => chat.toJson(),
+          );
+
+      var chatSnapshot = await chatDocRef.get();
+
+      if (!chatSnapshot.exists) {
+        log("Chat document not found");
+        return;
+      }
+      log("${chatSnapshot.data()!}");
+
+      Chat chat = chatSnapshot.data()!;
+      bool updated = false;
+
+      for (var message in chat.messages ?? []) {
+        if (message.senderID == uid2 && message.seen == false) {
+          message.seen = true;
+          updated = true;
+        }
+      }
+
+      if (updated) {
+        await chatDocRef.set(chat);
+        log("Messages marked as seen");
+      } else {
+        log("No unseen messages found");
+      }
+    } catch (e) {
+      log("Failed to mark messages as seen: $e");
+    }
+  }
+  /////////logic for markMessagesAsSeen
 
   Future<void> sendmessage(ChatMessage chatMessage) async {
     if (chatMessage.medias?.isNotEmpty ?? false) {
