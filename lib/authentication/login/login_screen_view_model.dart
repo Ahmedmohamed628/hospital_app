@@ -14,7 +14,7 @@ import '../../methods/common_methods.dart';
 import 'login_navigator.dart';
 
 class LoginScreenViewModel extends ChangeNotifier {
-  var emailController = TextEditingController(text: 'elandalusia@gmail.com');
+  var emailController = TextEditingController(text: 'elhaya@gmail.com');
   var passwordController = TextEditingController(text: '123456');
   CommonMethods cMethods = CommonMethods();
   static User? user;

@@ -28,7 +28,7 @@ Future<void> setup() async {
     options: FirebaseOptions(
       apiKey: 'AIzaSyDGoIsHdQjW9hidXSdbW3xS4YqKVGfYJGI',
       appId: '1:237732499396:android:fc5cf8ca28138255cfde91',
-      messagingSenderId: '867907366273',
+      messagingSenderId: '237732499396',
       projectId: 'emergency-app-da505',
       storageBucket: 'emergency-app-da505.appspot.com',
     ),

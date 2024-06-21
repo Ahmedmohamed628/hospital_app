@@ -14,8 +14,7 @@ class PushNotificationSystem
 {
   FirebaseMessaging firebaseCloudMessaging = FirebaseMessaging.instance;
 
-  Future<String?> generateDeviceRegistrationToken() async
-  {
+  Future<String?> generateDeviceRegistrationToken()async {
     String? deviceRecognitionToken = await firebaseCloudMessaging.getToken();
     
     DatabaseReference referenceOnlineDriver = FirebaseDatabase.instance.ref()
@@ -29,8 +28,7 @@ class PushNotificationSystem
     firebaseCloudMessaging.subscribeToTopic("Patient");
   }
 
-  startListeningForNewNotification(BuildContext context) async
-  {
+  startListeningForNewNotification(BuildContext context) async{
     ///1. Terminated
     //When the app is completely closed and it receives a push notification
     FirebaseMessaging.instance.getInitialMessage().then((RemoteMessage? messageRemote)
@@ -68,8 +66,7 @@ class PushNotificationSystem
     });
   }
 
-  retrieveTripRequestInfo(String tripID, BuildContext context)
-  {
+  retrieveTripRequestInfo(String tripID, BuildContext context){
     showDialog(
         context: context,
         barrierDismissible: false,

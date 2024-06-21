@@ -193,14 +193,14 @@ class _GoogleMapsForHospitalState extends State<GoogleMapsForHospital> {
                               offset: Offset(0.7, 0.7),
                             ),
                           ]),
-                          height: 221,
+                          height: MediaQuery.of(context).size.height*0.35,
                           child: Padding(
                             padding: EdgeInsets.symmetric(
                                 horizontal: 24, vertical: 18),
                             child: Column(
                               children: [
                                 SizedBox(
-                                  height: 11,
+                                  height: MediaQuery.of(context).size.height*0.001,
                                 ),
                                 Text(
                                   (!isHospitalAvailable)
@@ -214,7 +214,7 @@ class _GoogleMapsForHospitalState extends State<GoogleMapsForHospital> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 21,
+                                  height: MediaQuery.of(context).size.height*0.01,
                                 ),
                                 Text(
                                   (!isHospitalAvailable)
@@ -226,7 +226,7 @@ class _GoogleMapsForHospitalState extends State<GoogleMapsForHospital> {
                                   ),
                                 ),
                                 SizedBox(
-                                  height: 25,
+                                  height: MediaQuery.of(context).size.height*0.05,
                                 ),
                                 Row(
                                   children: [

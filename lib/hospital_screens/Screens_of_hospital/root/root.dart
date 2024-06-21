@@ -15,11 +15,11 @@ class RootScreenHospital extends StatefulWidget {
 }
 
 class _RootScreenHospitalState extends State<RootScreenHospital> {
-  initializePushNotificationSystem() {
-    PushNotificationSystem notificationSystem = PushNotificationSystem();
-    notificationSystem.generateDeviceRegistrationToken();
-    notificationSystem.startListeningForNewNotification(context);
-  }
+  // initializePushNotificationSystem() {
+  //   PushNotificationSystem notificationSystem = PushNotificationSystem();
+  //   notificationSystem.generateDeviceRegistrationToken();
+  //   notificationSystem.startListeningForNewNotification(context);
+  // }
 
   @override
   MyLocationManager locationManager = MyLocationManager();
@@ -27,7 +27,7 @@ class _RootScreenHospitalState extends State<RootScreenHospital> {
   void initState() {
     super.initState();
     requestPermission();
-    initializePushNotificationSystem();
+    // initializePushNotificationSystem();
   }
 
   @override

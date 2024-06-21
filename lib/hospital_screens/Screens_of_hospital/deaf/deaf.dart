@@ -59,7 +59,7 @@ class _FirstScreenState extends State<FirstScreen> {
             children: [
               Image.asset("assets/images/sign_lang.png"),
               SizedBox(
-                height: MediaQuery.of(context).size.height * 0.02,
+                height: MediaQuery.of(context).size.height * 0.001,
               ),
               SizedBox(
                 width: MediaQuery.of(context).size.width * 0.8,
