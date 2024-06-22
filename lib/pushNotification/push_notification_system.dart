@@ -1,14 +1,13 @@
-
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-
 import '../loading_dialog.dart';
 import '../model/trip_details.dart';
 import '../notification_dialog.dart';
+final audioPlayer = AssetsAudioPlayer();
 
 class PushNotificationSystem
 {
@@ -25,7 +24,7 @@ class PushNotificationSystem
     referenceOnlineDriver.set(deviceRecognitionToken);
 
     firebaseCloudMessaging.subscribeToTopic("Hospital");
-    firebaseCloudMessaging.subscribeToTopic("Patient");
+    firebaseCloudMessaging.subscribeToTopic("patients");
   }
 
   startListeningForNewNotification(BuildContext context) async{
@@ -79,13 +78,13 @@ class PushNotificationSystem
     {
       Navigator.pop(context);
 
-      // audioPlayer.open(
-      //   Audio(
-      //     "assets/audio/alert_sound.mp3"
-      //   ),
-      // );
-      //
-      // audioPlayer.play();
+      audioPlayer.open(
+        Audio(
+          "assets/audio/alert_sound.mp3"
+        ),
+      );
+
+      audioPlayer.play();
 
       TripDetails tripDetailsInfo = TripDetails();
       double pickUpLat = double.parse((dataSnapshot.snapshot.value! as Map)["pickUpLatLng"]["latitude"]);

@@ -2,13 +2,14 @@ import 'dart:async';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/pushNotification/push_notification_system.dart';
 import 'package:hospital/theme/theme.dart';
 import 'package:lottie/lottie.dart';
 
 import 'loading_dialog.dart';
 import 'methods/common_methods.dart';
 import 'model/trip_details.dart';
-
+int driverTripRequestTimeout =20;
 
 class NotificationDialog extends StatefulWidget
 {
@@ -25,37 +26,35 @@ class _NotificationDialogState extends State<NotificationDialog>
   String tripRequestStatus = "";
   CommonMethods cMethods = CommonMethods();
 
-  // cancelNotificationDialogAfter20Sec()
-  // {
-  //   const oneTickPerSecond = Duration(seconds: 1);
-  //
-  //   var timerCountDown = Timer.periodic(oneTickPerSecond, (timer)
-  //   {
-  //     driverTripRequestTimeout = driverTripRequestTimeout - 1;
-  //
-  //     if(tripRequestStatus == "accepted")
-  //     {
-  //       timer.cancel();
-  //       driverTripRequestTimeout = 20;
-  //     }
-  //
-  //     if(driverTripRequestTimeout == 0)
-  //     {
-  //       Navigator.pop(context);
-  //       timer.cancel();
-  //       driverTripRequestTimeout = 20;
-  //       audioPlayer.stop();
-  //     }
-  //   });
-  // }
-  //
-  // @override
-  // void initState() {
-  //   // TODO: implement initState
-  //   super.initState();
-  //
-  //   cancelNotificationDialogAfter20Sec();
-  // }
+  cancelNotificationDialogAfter20Sec(){
+    const oneTickPerSecond = Duration(seconds: 1);
+
+    var timerCountDown = Timer.periodic(oneTickPerSecond, (timer)
+    {
+      driverTripRequestTimeout = driverTripRequestTimeout - 1;
+
+      if(tripRequestStatus == "accepted")
+      {
+        timer.cancel();
+        driverTripRequestTimeout = 20;
+      }
+
+      if(driverTripRequestTimeout == 0)
+      {
+        Navigator.pop(context);
+        timer.cancel();
+        driverTripRequestTimeout = 20;
+        audioPlayer.stop();
+      }
+    });
+  }
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    cancelNotificationDialogAfter20Sec();
+  }
 
   // checkAvailabilityOfTripRequest(BuildContext context) async
   // {
@@ -249,7 +248,7 @@ class _NotificationDialogState extends State<NotificationDialog>
                       onPressed: ()
                       {
                         Navigator.pop(context);
-                        // audioPlayer.stop();
+                        audioPlayer.stop();
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: MyTheme.redColor,
@@ -269,8 +268,7 @@ class _NotificationDialogState extends State<NotificationDialog>
                     child: ElevatedButton(
                       onPressed: ()
                       {
-                        // audioPlayer.stop();
-
+                        audioPlayer.stop();
                         setState(() {
                           tripRequestStatus = "accepted";
                         });
