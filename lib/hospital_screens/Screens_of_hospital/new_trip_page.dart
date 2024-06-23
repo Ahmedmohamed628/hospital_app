@@ -6,6 +6,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:hospital/model/trip_details.dart';
 
 class NewTripPage extends StatefulWidget {
+  static const String routeName = 'new_trip_page';
   TripDetails? newTripDetailsInfo;
   NewTripPage({super.key, this.newTripDetailsInfo});
   @override

@@ -8,6 +8,7 @@ import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:line_awesome_flutter/line_awesome_flutter.dart';
 
+import '../../../methods/common_methods.dart';
 import '../../../pushNotification/push_notification_system.dart';
 import '../../../theme/theme.dart';
 
@@ -48,8 +49,8 @@ class _GoogleMapsForHospitalState extends State<GoogleMapsForHospital> {
     Position positionOfUser = await Geolocator.getCurrentPosition(
         desiredAccuracy: LocationAccuracy.bestForNavigation);
     currentPositionOfHospital = positionOfUser;
-    LatLng positionOfUserInLatLng = LatLng(currentPositionOfHospital!.latitude,
-        currentPositionOfHospital!.longitude);
+    ambulanceCurrentPosition = currentPositionOfHospital;
+    LatLng positionOfUserInLatLng = LatLng(currentPositionOfHospital!.latitude, currentPositionOfHospital!.longitude);
     CameraPosition cameraPosition =
         CameraPosition(target: positionOfUserInLatLng, zoom: 15);
     controllerGoogleMap!

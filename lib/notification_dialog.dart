@@ -6,6 +6,7 @@ import 'package:hospital/pushNotification/push_notification_system.dart';
 import 'package:hospital/theme/theme.dart';
 import 'package:lottie/lottie.dart';
 
+import 'hospital_screens/Screens_of_hospital/new_trip_page.dart';
 import 'loading_dialog.dart';
 import 'methods/common_methods.dart';
 import 'model/trip_details.dart';
@@ -56,58 +57,52 @@ class _NotificationDialogState extends State<NotificationDialog>
     cancelNotificationDialogAfter20Sec();
   }
 
-  // checkAvailabilityOfTripRequest(BuildContext context) async
-  // {
-  //   showDialog(
-  //     barrierDismissible: false,
-  //     context: context,
-  //     builder: (BuildContext context) => LoadingDialog(messageText: 'please wait...',),
-  //   );
-  //
-  //   DatabaseReference driverTripStatusRef = FirebaseDatabase.instance.ref()
-  //       .child("drivers")
-  //       .child(FirebaseAuth.instance.currentUser!.uid)
-  //       .child("newTripStatus");
-  //
-  //   await driverTripStatusRef.once()
-  //       .then((snap)
-  //   {
-  //     Navigator.pop(context);
-  //     Navigator.pop(context);
-  //
-  //     String newTripStatusValue = "";
-  //     if(snap.snapshot.value != null)
-  //     {
-  //       newTripStatusValue = snap.snapshot.value.toString();
-  //     }
-  //     else
-  //     {
-  //       cMethods.displaySnackBar("Trip Request Not Found.", context);
-  //     }
-  //
-  //     if(newTripStatusValue == widget.tripDetailsInfo!.tripID)
-  //     {
-  //       driverTripStatusRef.set("accepted");
-  //
-  //       //disable homepage location updates
-  //       cMethods.turnOffLocationUpdatesForHomePage();
-  //
-  //       Navigator.push(context, MaterialPageRoute(builder: (c)=> NewTripPage(newTripDetailsInfo: widget.tripDetailsInfo)));
-  //     }
-  //     else if(newTripStatusValue == "cancelled")
-  //     {
-  //       cMethods.displaySnackBar("Trip Request has been Cancelled by user.", context);
-  //     }
-  //     else if(newTripStatusValue == "timeout")
-  //     {
-  //       cMethods.displaySnackBar("Trip Request timed out.", context);
-  //     }
-  //     else
-  //     {
-  //       cMethods.displaySnackBar("Trip Request removed. Not Found.", context);
-  //     }
-  //   });
-  // }
+  checkAvailabilityOfTripRequest(BuildContext context) async {
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) => LoadingDialog(messageText: 'please wait...',),
+    );
+
+    DatabaseReference driverTripStatusRef = FirebaseDatabase.instance.ref()
+        .child("Hospital")
+        .child(FirebaseAuth.instance.currentUser!.uid)
+        .child("newTripStatus");
+
+    await driverTripStatusRef.once().then((snap)
+    {
+      //notification dialog
+      Navigator.pop(context);
+      //loading dialog
+      Navigator.pop(context);
+
+      String newTripStatusValue = "";
+      if(snap.snapshot.value != null) {
+        newTripStatusValue = snap.snapshot.value.toString();
+      }
+      else {
+        cMethods.displaySnackBar("Trip Request Not Found.", context);
+      }
+
+      if(newTripStatusValue == widget.tripDetailsInfo!.tripID){
+        driverTripStatusRef.set("accepted");
+
+        //disable homepage location updates
+        cMethods.turnOffLocationUpdatesForHomePage();
+
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> NewTripPage(newTripDetailsInfo: widget.tripDetailsInfo)));
+      }
+      else if(newTripStatusValue == "cancelled") {
+        cMethods.displaySnackBar("Trip Request has been Cancelled by patient.", context);
+      }
+      else if(newTripStatusValue == "timeout") {
+        cMethods.displaySnackBar("Trip Request timed out.", context);
+      }
+      else {
+        cMethods.displaySnackBar("Trip Request removed. Not Found.", context);
+      }
+    });
+  }
 
   @override
   Widget build(BuildContext context)
@@ -130,11 +125,11 @@ class _NotificationDialogState extends State<NotificationDialog>
 
             const SizedBox(height: 30.0,),
 
-            Lottie.asset('assets/images/patient.json'),
-            // Image.asset(
-            //   "assets/images/uberexec.png",
-            //   width: 140,
-            // ),
+            // Lottie.asset('assets/images/patient.json'),
+            Image.asset(
+              "assets/images/patient_dialog.png",
+              width: 140,
+            ),
 
             const SizedBox(height: 16.0,),
 
@@ -273,7 +268,7 @@ class _NotificationDialogState extends State<NotificationDialog>
                           tripRequestStatus = "accepted";
                         });
 
-                        // checkAvailabilityOfTripRequest(context);
+                        checkAvailabilityOfTripRequest(context);
                       },
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.green,

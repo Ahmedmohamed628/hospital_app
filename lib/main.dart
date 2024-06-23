@@ -2,6 +2,7 @@ import 'package:camera/camera.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:hospital/hospital_screens/Screens_of_hospital/new_trip_page.dart';
 import 'package:hospital/hospital_screens/wating.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Chat/Chat.dart';
 import 'package:hospital/hospital_screens/Screens_of_hospital/Settings/Settings.dart';
@@ -77,6 +78,7 @@ class MyApp extends StatelessWidget {
         ProfilePage.routeName: (context) => ProfilePage(),
         GoogleMapsForHospital.routeName: (context) => GoogleMapsForHospital(),
         WaitingScreen.routeName: (context) => WaitingScreen(),
+        NewTripPage.routeName: (context) => NewTripPage(),
       },
     );
   }
